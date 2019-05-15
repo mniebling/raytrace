@@ -1,0 +1,25 @@
+{
+  "name": "raytrace",
+  "version": "1.0.0",
+  "description": "Working through the Ray Tracer Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require ts-node/register --require tsconfig-paths/register test/**.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mniebling/Raytrace.git"
+  },
+  "author": "Mike Niebling",
+  "license": "MIT",
+  "homepage": "https://github.com/mniebling/Raytrace#readme",
+  "devDependencies": {
+    "@types/chai": "4.1.7",
+    "@types/mocha": "5.2.6",
+    "chai": "4.2.0",
+    "mocha": "6.1.4",
+    "ts-node": "8.1.0",
+    "tsconfig-paths": "3.8.0",
+    "typescript": "3.4.5"
+  }
+}

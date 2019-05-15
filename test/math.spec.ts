@@ -1,0 +1,52 @@
+import { expect } from 'chai'
+import { add, equal } from '@/math'
+import { Tuple, Point, Vector } from '@/tuples'
+
+
+describe('math.ts', () => {
+
+  describe('add()', () => {
+
+    it('should add a point and a vector', () => {
+
+      const a = new Point(1.5, 2.5, -1.0)
+      const b = new Vector(0.0, -1.0, 3.9)
+
+      expect(add(a, b)).to.deep.equal(new Point(1.5, 1.5, 2.9))
+    })
+
+    it('should add two vectors', () => {
+
+      const a = new Vector(1.5, 2.5, -1.0)
+      const b = new Vector(0.0, -1.0, 3.9)
+
+      expect(add(a, b)).to.deep.equal(new Vector(1.5, 1.5, 2.9))
+    })
+
+    it('should freak out about adding two points', () => {
+
+      const a = new Point(1.0, 1.0, 1.0)
+      const b = new Point(1.0, 1.0, 1.0)
+
+      expect(() => add(a, b)).to.throw()
+    })
+  })
+
+  describe('equal()', () => {
+
+    it('should compare two floating point numbers', () => {
+
+      expect(equal(1.0, 1.0)).to.be.true
+      expect(equal(1.0, 1.1)).to.be.false
+    })
+
+    it('should compare two tuples', () => {
+
+      const a = new Tuple(1.0, 2.5, -3.0, 1.0)
+      const b = new Tuple(6.7, 2.5, 3.0, 0.0)
+
+      expect(equal(a, a)).to.be.true
+      expect(equal(a, b)).to.be.false
+    })
+  })
+})
