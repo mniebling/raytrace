@@ -24,6 +24,21 @@ export function add (a: Tuple, b: Tuple): Tuple {
 }
 
 /**
+ * Divide a vector by a scalar constant.
+ */
+export function divide (v: Vector, scalar: number) {
+
+  if ((v.x === 0 || v.y === 0 || v.z === 0) && scalar === 0) throw new Error(`Dividing 0/0 isn't allowed.`)
+
+  return new Vector(
+    v.x / scalar,
+    v.y / scalar,
+    v.z / scalar
+  )
+}
+
+
+/**
  * Compare two floating point numbers or tuples for equivalence.
  */
 export function equal (a: number, b: number): boolean

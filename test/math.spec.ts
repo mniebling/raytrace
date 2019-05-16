@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { add, equal, subtract, negate, multiply } from '@/math'
+import { add, equal, subtract, negate, multiply, divide } from '@/math'
 import { Tuple, Point, Vector } from '@/tuples'
 
 
@@ -29,6 +29,41 @@ describe('math.ts', () => {
       const b = new Point(1.0, 1.0, 1.0)
 
       expect(() => add(a, b)).to.throw()
+    })
+  })
+
+  describe('divide()', () => {
+
+    it('should divide a vector by a scalar', () => {
+
+      const v = new Vector(1, -2 ,3)
+      const s = 2
+
+      expect(divide(v, s)).to.deep.equal(new Vector(0.5, -1, 1.5))
+    })
+
+    it('should handle zeroes in the denominator', () => {
+
+      const v = new Vector(1, -2 ,3)
+      const s = 0
+
+      expect(divide(v, s)).to.deep.equal(new Vector(Infinity, -Infinity, Infinity))
+    })
+
+    it('should handle zeroes in the numerator', () => {
+
+      const v = new Vector(0, 0, 4)
+      const s = 2
+
+      expect(divide(v, s)).to.deep.equal(new Vector(0, 0, 2))
+    })
+
+    it('should freak out about dividing 0/0', () => {
+
+      const v = new Vector(0, 1, 2)
+      const s = 0
+
+      expect(() => divide(v,s)).to.throw()
     })
   })
 
