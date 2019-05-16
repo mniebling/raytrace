@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { add, equal, subtract, negate } from '@/math'
+import { add, equal, subtract, negate, multiply } from '@/math'
 import { Tuple, Point, Vector } from '@/tuples'
 
 
@@ -47,6 +47,25 @@ describe('math.ts', () => {
 
       expect(equal(a, a)).to.be.true
       expect(equal(a, b)).to.be.false
+    })
+  })
+
+  describe('multiply()', () => {
+
+    it('should multiply by an integer', () => {
+
+      const v = new Vector(1, -2, 3)
+      const s = 3
+
+      expect(multiply(v, s)).to.deep.equal(new Vector(3, -6, 9))
+    })
+
+    it('should multiply by a fraction', () => {
+
+      const v = new Vector(1, -2 ,3)
+      const s = 0.5
+
+      expect(multiply(v, s)).to.deep.equal(new Vector(0.5, -1, 1.5))
     })
   })
 

@@ -45,6 +45,18 @@ export function equal (a: number | Tuple, b: number | Tuple): boolean {
 }
 
 /**
+ * Multiplies a vector by a scalar constant.
+ */
+export function multiply (v: Vector, scalar: number): Vector {
+
+  return new Vector(
+    v.x * scalar,
+    v.y * scalar,
+    v.z * scalar
+  )
+}
+
+/**
  * Returns the opposite of a vector.
  *
  * In other words, if the vector points from `a` to `b` then the opposite vector
