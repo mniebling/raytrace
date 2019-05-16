@@ -60,7 +60,7 @@ export function equal (a: number | Tuple, b: number | Tuple): boolean {
 }
 
 /**
- * Multiplies a vector by a scalar constant.
+ * Multiply a vector by a scalar constant.
  */
 export function multiply (v: Vector, scalar: number): Vector {
 
@@ -74,7 +74,7 @@ export function multiply (v: Vector, scalar: number): Vector {
 /**
  * Returns the opposite of a vector.
  *
- * In other words, if the vector points from `a` to `b` then the opposite vector
+ * In other words, if a vector points from `a` to `b` then its opposite vector
  * points from `b` to `a`.
  */
 export function negate (v: Vector): Vector {
@@ -90,11 +90,11 @@ export function negate (v: Vector): Vector {
  * Subtract tuple `b` from tuple `a`.
  *
  * - When subtracting two points, the result is the vector which spans from b
- * to a.
+ *   to a.
  * - When subtracting a vector from a point, it's like moving backwards
- * across the vector to the "initial" point.
+ *   across the vector to the "initial" point.
  * - When subtracting two vectors, the result is the change in direction
- * between the two.
+ *   between the two.
  */
 export function subtract (a: Tuple, b: Tuple): Tuple {
 

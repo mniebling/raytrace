@@ -63,7 +63,7 @@ describe('math.ts', () => {
       const v = new Vector(0, 1, 2)
       const s = 0
 
-      expect(() => divide(v,s)).to.throw()
+      expect(() => divide(v, s)).to.throw()
     })
   })
 
