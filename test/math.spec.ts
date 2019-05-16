@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { add, equal } from '@/math'
+import { add, equal, subtract, negate } from '@/math'
 import { Tuple, Point, Vector } from '@/tuples'
 
 
@@ -47,6 +47,43 @@ describe('math.ts', () => {
 
       expect(equal(a, a)).to.be.true
       expect(equal(a, b)).to.be.false
+    })
+  })
+
+  describe('negate()', () => {
+
+    it('should return the opposite of a vector', () => {
+
+      const v = new Vector(1, -2, 3)
+
+      expect(negate(v)).to.deep.equal(new Vector(-1, 2, -3))
+    })
+  })
+
+  describe('subtract()', () => {
+
+    it('should subtract two points', () => {
+
+      const a = new Point(3, 2, 1)
+      const b = new Point(5, 6, 7)
+
+      expect(subtract(a, b)).to.deep.equal(new Vector(-2, -4, -6))
+    })
+
+    it('should subtract a vector from a point', () => {
+
+      const a = new Point(3, 2, 1)
+      const b = new Vector(5, 6, 7)
+
+      expect(subtract(a, b)).to.deep.equal(new Point(-2, -4, -6))
+    })
+
+    it('should subtract two vectors', () => {
+
+      const a = new Vector(3, 2, 1)
+      const b = new Vector(5, 6, 7)
+
+      expect(subtract(a, b)).to.deep.equal(new Vector(-2, -4, -6))
     })
   })
 })
