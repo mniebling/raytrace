@@ -15,8 +15,10 @@
   "homepage": "https://github.com/mniebling/Raytrace#readme",
   "devDependencies": {
     "@types/chai": "4.1.7",
+    "@types/chai-almost": "1.0.0",
     "@types/mocha": "5.2.6",
     "chai": "4.2.0",
+    "chai-almost": "1.0.1",
     "mocha": "6.1.4",
     "ts-node": "8.1.0",
     "tsconfig-paths": "3.8.0",

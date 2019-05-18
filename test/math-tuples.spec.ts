@@ -1,6 +1,9 @@
-import { expect } from 'chai'
+import { use, expect } from 'chai'
+import almost from 'chai-almost'
 import { add, divide, equal, multiply, subtract } from '@/math-tuples'
-import { Tuple, Point, Vector } from '@/tuples'
+import { Color, Point, Tuple, Vector } from '@/tuples'
+
+use(almost(Number.EPSILON))
 
 
 describe('math.ts', () => {
@@ -12,7 +15,7 @@ describe('math.ts', () => {
       const a = new Point(1.5, 2.5, -1.0)
       const b = new Vector(0.0, -1.0, 3.9)
 
-      expect(add(a, b)).to.deep.equal(new Point(1.5, 1.5, 2.9))
+      expect(add(a, b)).to.deep.almost(new Point(1.5, 1.5, 2.9))
     })
 
     it('should add two vectors', () => {
@@ -20,7 +23,15 @@ describe('math.ts', () => {
       const a = new Vector(1.5, 2.5, -1.0)
       const b = new Vector(0.0, -1.0, 3.9)
 
-      expect(add(a, b)).to.deep.equal(new Vector(1.5, 1.5, 2.9))
+      expect(add(a, b)).to.deep.almost(new Vector(1.5, 1.5, 2.9))
+    })
+
+    it('should add two colors', () => {
+
+      const a = new Color(0.9, 0.6, 0.75)
+      const b = new Color(0.7, 0.1, 0.25)
+
+      expect(add(a, b)).to.deep.almost(new Color(1.6, 0.7, 1.0))
     })
   })
 
@@ -31,7 +42,15 @@ describe('math.ts', () => {
       const v = new Vector(1, -2, 3)
       const s = 2
 
-      expect(divide(v, s)).to.deep.equal(new Vector(0.5, -1, 1.5))
+      expect(divide(v, s)).to.deep.almost(new Vector(0.5, -1, 1.5))
+    })
+
+    it('should divide a color by a scalar', () => {
+
+      const c = new Color(0.5, 0.2, 0.8)
+      const s = 2
+
+      expect(divide(c, s)).to.deep.almost(new Color(0.25, 0.1, 0.4))
     })
 
     it('should handle zeroes in the denominator', () => {
@@ -47,7 +66,7 @@ describe('math.ts', () => {
       const v = new Vector(0, 0, 4)
       const s = 2
 
-      expect(divide(v, s)).to.deep.equal(new Vector(0, 0, 2))
+      expect(divide(v, s)).to.deep.almost(new Vector(0, 0, 2))
     })
 
     it('should freak out about dividing 0/0', () => {
@@ -79,20 +98,28 @@ describe('math.ts', () => {
 
   describe('multiply()', () => {
 
-    it('should multiply by an integer', () => {
+    it('should multiply a vector by an integer', () => {
 
       const v = new Vector(1, -2, 3)
       const s = 3
 
-      expect(multiply(v, s)).to.deep.equal(new Vector(3, -6, 9))
+      expect(multiply(v, s)).to.deep.almost(new Vector(3, -6, 9))
     })
 
-    it('should multiply by a fraction', () => {
+    it('should multiply a vector by a fraction', () => {
 
       const v = new Vector(1, -2 ,3)
       const s = 0.5
 
-      expect(multiply(v, s)).to.deep.equal(new Vector(0.5, -1, 1.5))
+      expect(multiply(v, s)).to.deep.almost(new Vector(0.5, -1, 1.5))
+    })
+
+    it('should multiply a color by an integer', () => {
+
+      const c = new Color(1, -2, 3)
+      const s = 3
+
+      expect(multiply(c, s)).to.deep.almost(new Color(3, -6, 9))
     })
   })
 
@@ -103,7 +130,7 @@ describe('math.ts', () => {
       const a = new Point(3, 2, 1)
       const b = new Point(5, 6, 7)
 
-      expect(subtract(a, b)).to.deep.equal(new Vector(-2, -4, -6))
+      expect(subtract(a, b)).to.deep.almost(new Vector(-2, -4, -6))
     })
 
     it('should subtract a vector from a point', () => {
@@ -111,7 +138,7 @@ describe('math.ts', () => {
       const a = new Point(3, 2, 1)
       const b = new Vector(5, 6, 7)
 
-      expect(subtract(a, b)).to.deep.equal(new Point(-2, -4, -6))
+      expect(subtract(a, b)).to.deep.almost(new Point(-2, -4, -6))
     })
 
     it('should subtract two vectors', () => {
@@ -119,7 +146,15 @@ describe('math.ts', () => {
       const a = new Vector(3, 2, 1)
       const b = new Vector(5, 6, 7)
 
-      expect(subtract(a, b)).to.deep.equal(new Vector(-2, -4, -6))
+      expect(subtract(a, b)).to.deep.almost(new Vector(-2, -4, -6))
+    })
+
+    it('should subtract two colors', () => {
+
+      const a = new Color(0.9, 0.6, 0.75)
+      const b = new Color(0.7, 0.1, 0.25)
+
+      expect(subtract(a, b)).to.deep.almost(new Color(0.2, 0.5, 0.5))
     })
   })
 })

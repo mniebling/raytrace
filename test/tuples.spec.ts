@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Tuple, isPoint, isVector, Point, Vector } from '@/tuples'
+import { Tuple, isPoint, isVector, Point, Vector, Color } from '@/tuples'
 
 
 describe('tuples.ts', () => {
@@ -30,6 +30,19 @@ describe('tuples.ts', () => {
 
       expect(isPoint(result)).to.equal(false)
       expect(isVector(result)).to.equal(true)
+    })
+  })
+
+  describe('new Color()', () => {
+
+    it('should create colors', () => {
+
+      const result = new Color(4.3, -4.2, 3.1)
+
+      expect(result._tuple[0]).to.equal(4.3)
+      expect(result._tuple[1]).to.equal(-4.2)
+      expect(result._tuple[2]).to.equal(3.1)
+      expect(result._tuple[3]).to.equal(0.0)
     })
   })
 
