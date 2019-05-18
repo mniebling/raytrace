@@ -60,6 +60,16 @@ export function equal (a: number | Tuple, b: number | Tuple): boolean {
 }
 
 /**
+ * Returns the end-to-end length of the given vector.
+ */
+export function magnitude (v: Vector): number {
+
+  return Math.sqrt(
+    (v.x ** 2) + (v.y ** 2) + (v.z ** 2)
+  )
+}
+
+/**
  * Multiply a vector by a scalar constant.
  */
 export function multiply (v: Vector, scalar: number): Vector {
@@ -68,6 +78,22 @@ export function multiply (v: Vector, scalar: number): Vector {
     v.x * scalar,
     v.y * scalar,
     v.z * scalar
+  )
+}
+
+/**
+ * Converts the given vector into a unit vector (i.e., magnitude = 1).
+ */
+export function normalize (v: Vector): Vector {
+
+  const mag = magnitude(v)
+
+  if (mag === 0) throw new Error(`Can't normalize a vector with 0 magnitude.`)
+
+  return new Vector(
+    v.x / mag,
+    v.y / mag,
+    v.z / mag
   )
 }
 

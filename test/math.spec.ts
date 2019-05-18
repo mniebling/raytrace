@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { add, equal, subtract, negate, multiply, divide } from '@/math'
+import { add, equal, subtract, negate, multiply, divide, magnitude, normalize } from '@/math'
 import { Tuple, Point, Vector } from '@/tuples'
 
 
@@ -85,6 +85,22 @@ describe('math.ts', () => {
     })
   })
 
+  describe('magnitude()', () => {
+
+    it('should compute the magnitude of unit vectors', () => {
+
+      expect(magnitude(new Vector(1, 0, 0))).to.equal(1)
+      expect(magnitude(new Vector(0, 1, 0))).to.equal(1)
+      expect(magnitude(new Vector(0, 0, 1))).to.equal(1)
+    })
+
+    it('should compute the magnitude of other vectors', () => {
+
+      expect(magnitude(new Vector(1, 2, 3))).to.equal(Math.sqrt(14))
+      expect(magnitude(new Vector(-1, -2, -3))).to.equal(Math.sqrt(14))
+    })
+  })
+
   describe('multiply()', () => {
 
     it('should multiply by an integer', () => {
@@ -111,6 +127,34 @@ describe('math.ts', () => {
       const v = new Vector(1, -2, 3)
 
       expect(negate(v)).to.deep.equal(new Vector(-1, 2, -3))
+    })
+  })
+
+  describe('normalize()', () => {
+
+    it('should normalize a vector with integer magnitude', () => {
+
+      const v = normalize(new Vector(4, 0, 0))
+
+      expect(v).to.deep.equal(new Vector(1, 0, 0))
+    })
+
+    it('should normalize a vector with non-integer magnitude', () => {
+
+      const v2 = normalize(new Vector(1, 2, 3))
+
+      expect(v2).to.deep.equal(new Vector(
+        1 / Math.sqrt(14), // ≈ 0.26726
+        2 / Math.sqrt(14), // ≈ 0.53452
+        3 / Math.sqrt(14)  // ≈ 0.80178
+      ))
+    })
+
+    it('should freak out about normalizing a vector with magnitude = 0', () => {
+
+      const v = new Vector(0, 0, 0)
+
+      expect(() => normalize(v)).to.throw()
     })
   })
 
