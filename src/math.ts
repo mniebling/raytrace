@@ -26,17 +26,17 @@ export function add (a: Tuple, b: Tuple): Tuple {
 /**
  * Returns the cross product of two vectors.
  *
- * The cross product returns the vector perpendicular to both a and b.
+ * The cross product returns the vector perpendicular to both v1 and v2.
  *
  * Note that order matters: changing the order of operands changes the sign of
  * the resulting vector.
  */
-export function cross (a: Vector, b: Vector): Vector {
+export function cross (v1: Vector, v2: Vector): Vector {
 
   return new Vector(
-    (a.y * b.z) - (a.z * b.y),
-    (a.z * b.x) - (a.x * b.z),
-    (a.x * b.y) - (a.y * b.x)
+    (v1.y * v2.z) - (v1.z * v2.y),
+    (v1.z * v2.x) - (v1.x * v2.z),
+    (v1.x * v2.y) - (v1.y * v2.x)
   )
 }
 
@@ -65,9 +65,9 @@ export function divide (v: Vector, scalar: number) {
  * It also increases as the magnitude of the vectors increases (because they
  * have "more strength" to begin with that way).
  */
-export function dot (a: Vector, b: Vector): number {
+export function dot (v1: Vector, v2: Vector): number {
 
-  return (a.x * b.x) + (a.y * b.y) + (a.z * b.z)
+  return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z)
 }
 
 /**

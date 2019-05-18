@@ -36,11 +36,11 @@ describe('math.ts', () => {
 
     it('should calculate the cross product of two vectors', () => {
 
-      const a = new Vector(1, 2, 3)
-      const b = new Vector(2, 3, 4)
+      const v1 = new Vector(1, 2, 3)
+      const v2 = new Vector(2, 3, 4)
 
-      expect(cross(a, b)).to.deep.equal(new Vector(-1, 2, -1))
-      expect(cross(b, a)).to.deep.equal(new Vector(1, -2, 1))
+      expect(cross(v1, v2)).to.deep.equal(new Vector(-1, 2, -1))
+      expect(cross(v2, v1)).to.deep.equal(new Vector(1, -2, 1))
     })
   })
 
@@ -119,7 +119,7 @@ describe('math.ts', () => {
 
     it('should compute the magnitude of other vectors', () => {
 
-      expect(magnitude(new Vector(1, 2, 3))).to.equal(Math.sqrt(14))
+      expect(magnitude(new Vector( 1,  2,  3))).to.equal(Math.sqrt(14))
       expect(magnitude(new Vector(-1, -2, -3))).to.equal(Math.sqrt(14))
     })
   })
