@@ -10,10 +10,10 @@ describe('tuples.ts', () => {
 
       const result = new Tuple(4.3, -4.2, 3.1, 1.0)
 
-      expect(result.x).to.equal(4.3)
-      expect(result.y).to.equal(-4.2)
-      expect(result.z).to.equal(3.1)
-      expect(result.w).to.equal(1.0)
+      expect(result._tuple[0]).to.equal(4.3)
+      expect(result._tuple[1]).to.equal(-4.2)
+      expect(result._tuple[2]).to.equal(3.1)
+      expect(result._tuple[3]).to.equal(1.0)
 
       expect(isPoint(result)).to.equal(true)
       expect(isVector(result)).to.equal(false)
@@ -23,10 +23,10 @@ describe('tuples.ts', () => {
 
       const result = new Tuple(4.3, -4.2, 3.1, 0.0)
 
-      expect(result.x).to.equal(4.3)
-      expect(result.y).to.equal(-4.2)
-      expect(result.z).to.equal(3.1)
-      expect(result.w).to.equal(0.0)
+      expect(result._tuple[0]).to.equal(4.3)
+      expect(result._tuple[1]).to.equal(-4.2)
+      expect(result._tuple[2]).to.equal(3.1)
+      expect(result._tuple[3]).to.equal(0.0)
 
       expect(isPoint(result)).to.equal(false)
       expect(isVector(result)).to.equal(true)

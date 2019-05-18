@@ -1,37 +1,19 @@
-import { equal } from '@/math'
+import { equal } from '@/math-tuples'
 
 
-export type ExactlyOneOrZero = 0.0 | 1.0
-
-
+/**
+ * The Tuple class contains an internal representation of the raw tuple.
+ *
+ * It can be extended to provide domain logic over specific types of tuples
+ * while still allowing common operations like `add` to work on the raw data.
+ */
 export class Tuple {
 
-  x: number
-  y: number
-  z: number
-  w: ExactlyOneOrZero
+  _tuple: [number, number, number, number]
 
-  /**
-   * Passing w = 1.0 creates a Point, 0.0 creates a Vector.
-   */
-  constructor(
-    x: number,
-    y: number,
-    z: number,
-    w: ExactlyOneOrZero
-  ) {
+  constructor(...args: [number, number, number, number]) {
 
-    if (typeof x !== 'number') throw new Error(`x value must be provided`)
-    if (typeof y !== 'number') throw new Error(`y value must be provided`)
-    if (typeof z !== 'number') throw new Error(`z value must be provided`)
-    if (typeof w !== 'number') throw new Error(`w value must be provided`)
-
-    if (w !== 0.0 && w !== 1.0) throw new Error(`w must be 0.0 or 1.0`)
-
-    this.x = x
-    this.y = y
-    this.z = z
-    this.w = w
+    this._tuple = [args[0], args[1], args[2], args[3]]
   }
 }
 
@@ -40,6 +22,38 @@ export class Point extends Tuple {
   constructor (x: number, y: number, z: number) {
     super(x, y, z, 1.0)
   }
+
+  get x (): number {
+    return this._tuple[0]
+  }
+
+  get y (): number {
+    return this._tuple[1]
+  }
+
+  get z (): number {
+    return this._tuple[2]
+  }
+
+  get w (): 1.0 {
+    return 1.0
+  }
+
+  set x (value: number) {
+    this._tuple[0] = value
+  }
+
+  set y (value: number) {
+    this._tuple[1] = value
+  }
+
+  set z (value: number) {
+    this._tuple[2] = value
+  }
+
+  set w (value: 1.0) {
+    this._tuple[3] = value
+  }
 }
 
 export class Vector extends Tuple {
@@ -47,14 +61,46 @@ export class Vector extends Tuple {
   constructor (x: number, y: number, z: number) {
     super(x, y, z, 0.0)
   }
+
+  get x (): number {
+    return this._tuple[0]
+  }
+
+  get y (): number {
+    return this._tuple[1]
+  }
+
+  get z (): number {
+    return this._tuple[2]
+  }
+
+  get w (): 0.0 {
+    return 0.0
+  }
+
+  set x (value: number) {
+    this._tuple[0] = value
+  }
+
+  set y (value: number) {
+    this._tuple[1] = value
+  }
+
+  set z (value: number) {
+    this._tuple[2] = value
+  }
+
+  set w (value: 0.0) {
+    this._tuple[3] = value
+  }
 }
 
-export function isPoint (tuple: Tuple): tuple is Point {
+export function isPoint (t: Tuple): t is Point {
 
-  return equal(tuple.w, 1.0)
+  return equal(t._tuple[3], 1.0)
 }
 
-export function isVector (tuple: Tuple): tuple is Vector {
+export function isVector (t: Tuple): t is Vector {
 
-  return equal(tuple.w, 0.0)
+  return equal(t._tuple[3], 0.0)
 }
