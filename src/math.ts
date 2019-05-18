@@ -24,6 +24,23 @@ export function add (a: Tuple, b: Tuple): Tuple {
 }
 
 /**
+ * Returns the cross product of two vectors.
+ *
+ * The cross product returns the vector perpendicular to both a and b.
+ *
+ * Note that order matters: changing the order of operands changes the sign of
+ * the resulting vector.
+ */
+export function cross (a: Vector, b: Vector): Vector {
+
+  return new Vector(
+    (a.y * b.z) - (a.z * b.y),
+    (a.z * b.z) - (a.x * b.z),
+    (a.x * b.y) - (a.y * b.x)
+  )
+}
+
+/**
  * Divide a vector by a scalar constant.
  */
 export function divide (v: Vector, scalar: number) {
@@ -37,6 +54,21 @@ export function divide (v: Vector, scalar: number) {
   )
 }
 
+/**
+ * Returns the dot product of two vectors.
+ *
+ * The dot product describes the "force" of the vectors' shared direction.
+ *
+ * It increases as the angle between the vectors decreases (because they "share
+ * more direction" that way).
+ *
+ * It also increases as the magnitude of the vectors increases (because they
+ * have "more strength" to begin with that way).
+ */
+export function dot (a: Vector, b: Vector): number {
+
+  return (a.x * b.x) + (a.y * b.y) + (a.z * b.z)
+}
 
 /**
  * Compare two floating point numbers or tuples for equivalence.

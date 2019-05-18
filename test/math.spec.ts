@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { add, equal, subtract, negate, multiply, divide, magnitude, normalize } from '@/math'
+import { add, equal, subtract, negate, multiply, divide, magnitude, normalize, dot, cross } from '@/math'
 import { Tuple, Point, Vector } from '@/tuples'
 
 
@@ -29,6 +29,18 @@ describe('math.ts', () => {
       const b = new Point(1.0, 1.0, 1.0)
 
       expect(() => add(a, b)).to.throw()
+    })
+  })
+
+  describe('cross()', () => {
+
+    it('should calculate the cross product of two vectors', () => {
+
+      const a = new Vector(1, 2, 3)
+      const b = new Vector(2, 3, 4)
+
+      expect(cross(a, b)).to.deep.equal(new Vector(-1, 2, -1))
+      expect(cross(b, a)).to.deep.equal(new Vector(1, -2, 1))
     })
   })
 
@@ -64,6 +76,17 @@ describe('math.ts', () => {
       const s = 0
 
       expect(() => divide(v, s)).to.throw()
+    })
+  })
+
+  describe('dot()', () => {
+
+    it('should compute the dot product of two vectors', () => {
+
+      const v1 = new Vector(1, 2, 3)
+      const v2 = new Vector(2, 3, 4)
+
+      expect(equal(dot(v1, v2), 20)).to.be.true
     })
   })
 
