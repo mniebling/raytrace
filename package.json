@@ -2,8 +2,11 @@
   "name": "raytrace",
   "version": "1.0.0",
   "description": "Working through the Ray Tracer Challenge",
-  "main": "index.js",
+  "private": true,
   "scripts": {
+    "build": "webpack --config webpack.config.js --mode development",
+    "build:prod": "webpack --config webpack.config.js --mode production",
+    "dev": "webpack-dev-server",
     "test": "mocha --require ts-node/register --require tsconfig-paths/register test/**.spec.ts"
   },
   "repository": {
@@ -19,9 +22,15 @@
     "@types/mocha": "5.2.6",
     "chai": "4.2.0",
     "chai-almost": "1.0.1",
+    "html-webpack-plugin": "3.2.0",
     "mocha": "6.1.4",
+    "ts-loader": "6.0.1",
     "ts-node": "8.1.0",
     "tsconfig-paths": "3.8.0",
-    "typescript": "3.4.5"
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "typescript": "3.4.5",
+    "webpack": "4.31.0",
+    "webpack-cli": "3.3.2",
+    "webpack-dev-server": "3.4.1"
   }
 }
