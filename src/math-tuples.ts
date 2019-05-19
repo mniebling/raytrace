@@ -55,15 +55,26 @@ export function divide (t: Tuple, scalar: number) {
 }
 
 /**
- * Multiply a tuple by a scalar constant.
+ * Multiply a tuple by a scalar constant or another tuple.
  */
-export function multiply (t: Tuple, scalar: number): Tuple {
+export function multiply (t1: Tuple, t2: Tuple): Tuple
+export function multiply (t: Tuple, scalar: number): Tuple
+export function multiply (a: Tuple, b: number | Tuple): Tuple {
+
+  if (typeof b === 'number') {
+    return new Tuple(
+      a._tuple[0] * b,
+      a._tuple[1] * b,
+      a._tuple[2] * b,
+      a._tuple[3] * b
+    )
+  }
 
   return new Tuple(
-    t._tuple[0] * scalar,
-    t._tuple[1] * scalar,
-    t._tuple[2] * scalar,
-    t._tuple[3] * scalar
+    a._tuple[0] * b._tuple[0],
+    a._tuple[1] * b._tuple[1],
+    a._tuple[2] * b._tuple[2],
+    a._tuple[3] * b._tuple[3],
   )
 }
 

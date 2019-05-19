@@ -121,6 +121,14 @@ describe('math.ts', () => {
 
       expect(multiply(c, s)).to.deep.almost(new Color(3, -6, 9))
     })
+
+    it('should multiply two colors', () => {
+
+      const c1 = new Color(1, 0.2, 0.4)
+      const c2 = new Color(0.9, 1, 0.1)
+
+      expect(multiply(c1, c2)).to.deep.almost(new Color(0.9, 0.2, 0.04))
+    })
   })
 
   describe('subtract()', () => {
