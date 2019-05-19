@@ -42,7 +42,7 @@ describe('tuples.ts', () => {
       expect(result._tuple[0]).to.equal(4.3)
       expect(result._tuple[1]).to.equal(-4.2)
       expect(result._tuple[2]).to.equal(3.1)
-      expect(result._tuple[3]).to.equal(0.0)
+      expect(result._tuple[3]).to.equal(1.0)
     })
   })
 

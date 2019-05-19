@@ -19,8 +19,8 @@ export class Tuple {
 
 export class Color extends Tuple {
 
-  constructor (r: number, g: number, b: number) {
-    super(r, g, b, 0.0) // for now, only worry about RGB
+  constructor (r: number, g: number, b: number, a: number = 1.0) {
+    super(r, g, b, a)
   }
 
   get r (): number {

@@ -46,4 +46,41 @@ export class Canvas {
 
     this.pixelData[position] = color
   }
+
+  /**
+   * Returns a representation of the canvas data which is compatible with the
+   * `CanvasRenderingContext2D.putImageData()` method.
+   *
+   * ImageData's `data` property is a `Uint8ClampedArray`, with four sequential
+   * 1-byte integers for each pixel, representing its RGBA values clamped to 0-255.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray
+   */
+  getImageData (): ImageData {
+
+    function reducer (accum: number[], pixel: Color): number[] {
+      return accum.concat(pixel._tuple.map(clamp))
+    }
+
+    let spreadPixelData = this.pixelData.reduce(reducer, [])
+
+    return {
+      data: new Uint8ClampedArray(spreadPixelData),
+      height: this.height,
+      width: this.width
+    }
+  }
+}
+
+/**
+ * Maps a value from the 0-1 range to 0-255 and rounds it to an integer.
+ *
+ * Values outside of 0-1 will return 0 or 255 respectively.
+ */
+export function clamp (value: number) {
+
+  if (value < 0) value = 0
+  if (value > 1) value = 1
+
+  return Math.round(value * 255)
 }

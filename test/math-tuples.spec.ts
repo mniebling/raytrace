@@ -31,7 +31,7 @@ describe('math.ts', () => {
       const a = new Color(0.9, 0.6, 0.75)
       const b = new Color(0.7, 0.1, 0.25)
 
-      expect(add(a, b)).to.deep.almost(new Color(1.6, 0.7, 1.0))
+      expect(add(a, b)).to.deep.almost(new Color(1.6, 0.7, 1.0, 2.0))
     })
   })
 
@@ -50,7 +50,7 @@ describe('math.ts', () => {
       const c = new Color(0.5, 0.2, 0.8)
       const s = 2
 
-      expect(divide(c, s)).to.deep.almost(new Color(0.25, 0.1, 0.4))
+      expect(divide(c, s)).to.deep.almost(new Color(0.25, 0.1, 0.4, 0.5))
     })
 
     it('should handle zeroes in the denominator', () => {
@@ -119,7 +119,7 @@ describe('math.ts', () => {
       const c = new Color(1, -2, 3)
       const s = 3
 
-      expect(multiply(c, s)).to.deep.almost(new Color(3, -6, 9))
+      expect(multiply(c, s)).to.deep.almost(new Color(3, -6, 9, 3))
     })
 
     it('should multiply two colors', () => {
@@ -162,7 +162,7 @@ describe('math.ts', () => {
       const a = new Color(0.9, 0.6, 0.75)
       const b = new Color(0.7, 0.1, 0.25)
 
-      expect(subtract(a, b)).to.deep.almost(new Color(0.2, 0.5, 0.5))
+      expect(subtract(a, b)).to.deep.almost(new Color(0.2, 0.5, 0.5, 0))
     })
   })
 })
