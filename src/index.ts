@@ -1,19 +1,29 @@
 import { Canvas } from '@/canvas'
 
 
-const c = new Canvas(15, 20)
+const canvas = new Canvas(600, 400)
 
-function component() {
+// Set up the HTML page
+const el = document.getElementById('canvasElement') as HTMLCanvasElement
+const ctx = el.getContext('2d')
 
-  const element = document.createElement('div')
+if (!ctx) throw new Error(`Error getting context from canvas.`)
 
-  element.innerText = 'Hello World'
-  c.getPixel(0, 0)
 
-  return element
+// Draw something...
+const imgData = ctx.createImageData(canvas.height, canvas.width)
+
+// Iterate through every pixel
+for (let i = 0; i < imgData.data.length; i += 4) {
+  // Modify pixel data
+  imgData.data[i + 0] = 190  // R value
+  imgData.data[i + 1] = 0    // G value
+  imgData.data[i + 2] = 210  // B value
+  imgData.data[i + 3] = 255  // A value
 }
 
+ctx.putImageData(imgData, 0, 0)
 
 
-
-document.body.appendChild(component())
+// This errors out:
+// ctx.putImageData(canvas.getImageData(), 0, 0)
