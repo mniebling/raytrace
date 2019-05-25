@@ -4,6 +4,24 @@ import { equal } from '@/math-tuples'
 import { Color } from '@/tuples'
 
 
+// Mock ImageData manually for now
+//
+// TODO: Move custom types into a specific definition file and use separate
+// TSConfig so those types are only included in the unit test run.
+declare global {
+  namespace NodeJS {
+    interface Global {
+        ImageData: Function
+    }
+  }
+}
+
+global.ImageData = function (data: Uint8ClampedArray, width: number, height: number) {
+  return { data, width, height }
+}
+
+
+
 describe('canvas.ts', () => {
 
   describe('new Canvas()', () => {
@@ -74,7 +92,7 @@ describe('canvas.ts', () => {
       expect(equal(imageData.data[2], 0)).to.be.true
       expect(equal(imageData.data[3], 255)).to.be.true
 
-      // Then the second point should follow the first point
+      // // Then the second point should follow the first point
       expect(equal(imageData.data[4], 0)).to.be.true
       expect(equal(imageData.data[5], 0)).to.be.true
       expect(equal(imageData.data[6], 0)).to.be.true

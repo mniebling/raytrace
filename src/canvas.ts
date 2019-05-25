@@ -58,17 +58,24 @@ export class Canvas {
    */
   getImageData (): ImageData {
 
-    function reducer (accum: number[], pixel: Color): number[] {
-      return accum.concat(pixel._tuple.map(clamp))
+    // Preallocating the array improves performance.
+    let data = new Uint8ClampedArray(this.pixelData.length * 4)
+
+    // Loop through canvas pixels, spreading each pixel into its RGBA values,
+    // clamping them to 0-255 and writing them to the `Uint8ClampedArray`.
+    for (let i = 0; i < this.pixelData.length; i++) {
+
+      let clampedValues = this.pixelData[i]._tuple.map(clamp)
+
+      data[i * 4]       = clampedValues[0]
+      data[(i * 4) + 1] = clampedValues[1]
+      data[(i * 4) + 2] = clampedValues[2]
+      data[(i * 4) + 3] = clampedValues[3]
     }
 
-    let spreadPixelData = this.pixelData.reduce(reducer, [])
-
-    return {
-      data: new Uint8ClampedArray(spreadPixelData),
-      height: this.height,
-      width: this.width
-    }
+    // We can't just return an object in the `ImageData` shape, the constructor
+    // has some magic somewhere.
+    return new ImageData(data, this.width, this.height)
   }
 }
 
