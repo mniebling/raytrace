@@ -1,4 +1,4 @@
-import { Tuple } from '@/tuples'
+import { Tuple, Point, Vector, Color } from '@/tuples'
 
 
 /**
@@ -7,6 +7,11 @@ import { Tuple } from '@/tuples'
  * - When adding a point to a vector, we get a transformed point (w = 1).
  * - When adding two vectors, we end up with a transformed vector (w = 0).
  */
+export function add (a: Point, b: Point): Point
+export function add (a: Point, b: Vector): Point
+export function add (a: Vector, b: Point): Point
+export function add (a: Vector, b: Vector): Vector
+export function add (a: Color, b: Color): Color
 export function add (a: Tuple, b: Tuple): Tuple {
 
   return new Tuple(
