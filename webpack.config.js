@@ -1,5 +1,6 @@
 const path = require('path')
 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
@@ -26,6 +27,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
+    new CopyWebpackPlugin([
+      'favicon.png'
+    ]),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
