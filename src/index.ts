@@ -1,7 +1,7 @@
 import { Canvas } from '@/canvas'
-import { add } from '@/math-tuples'
+import { add, multiply } from '@/math-tuples'
 import { normalize } from '@/math-vectors'
-import { Point, Vector } from '@/tuples'
+import { Point, Vector, Color } from '@/tuples'
 
 
 const canvas = new Canvas(600, 400)
@@ -21,18 +21,16 @@ ctx.putImageData(canvas.getImageData(), 0, 0)
 
 // Define a projectile, a set of environmental forces, and an update function.
 interface Projectile {
-
   position: Point
   velocity: Vector
 }
 
 interface Environment {
-
   gravity: Vector
   wind: Vector
 }
 
-function tick (env: Environment, proj: Projectile) {
+function updateEnv (env: Environment, proj: Projectile) {
 
   console.info(proj.position.x, proj.position.y)
 
@@ -44,24 +42,47 @@ function tick (env: Environment, proj: Projectile) {
 
 // Initialize an environment and projectile.
 const env: Environment = {
-  gravity: new Vector(0, -0.1, 0),
+  gravity: new Vector(0, -0.25, 0),
   wind: new Vector(-0.01, 0, 0)
 }
 
 const p: Projectile = {
   position: new Point(0, 1, 0),
-  velocity: normalize(new Vector(1, 1, 0))
+  velocity: multiply(normalize(new Vector(1, 3, 0)), 10.0)
+}
+
+// Our rendering canvas has inverted coordinates from the world canvas
+function projectilePositionToCtxPosition(canvas: Canvas, p: Projectile): Point {
+
+  return new Point(
+    Math.floor(p.position.x),
+    Math.floor((p.position.y > 0) ? canvas.height - p.position.y : 1),
+    p.position.z
+  )
+}
+
+// Get the updated canvas image data with the new point plotted
+function updateCanvas (canvas: Canvas, p: Projectile): ImageData {
+
+  const pink = new Color(1, 0.7, 0.8)
+  const pos = projectilePositionToCtxPosition(canvas, p)
+
+  canvas.setPixel(pos.x, pos.y, pink)
+
+  return canvas.getImageData()
 }
 
 // Run tick until the projectile is off the canvas.
-let i = 0
+function tick () {
 
-while (p.position.y > 0) {
+  if (!ctx) throw new Error(`No canvas context.`)
 
-  console.info(p.position.x, p.position.y)
-
-  tick(env, p)
-
-  console.info(`Tick: ${++i}`)
   console.info(`(${p.position.x}, ${p.position.y})`)
+
+  updateEnv(env, p)
+  ctx.putImageData(updateCanvas(canvas, p), 0, 0)
+
+  if (p.position.y > 0) window.webkitRequestAnimationFrame(tick)
 }
+
+window.requestAnimationFrame(tick)

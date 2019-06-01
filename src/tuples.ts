@@ -19,6 +19,7 @@ export class Tuple {
 
 export class Color extends Tuple {
 
+  /** By default, `a` = 1.0. */
   constructor (r: number, g: number, b: number, a: number = 1.0) {
     super(r, g, b, a)
   }
