@@ -9,7 +9,21 @@ describe('add()', () => {
     const a = new Point(1.5, 2.5, -1.0)
     const b = new Vector(0.0, -1.0, 3.9)
 
-    expect(add(a, b)).toBeDeepCloseTo(new Point(1.5, 1.5, 2.9))
+    const result = add(a, b)
+
+    expect(result).toBeDeepCloseTo(new Point(1.5, 1.5, 2.9))
+    expect(result).toBeInstanceOf(Point)
+  })
+
+  it('should add two points', () => {
+
+    const a = new Point(1.5, 2.5, -1.0)
+    const b = new Point(0.0, -1.0, 3.9)
+
+    const result = add(a, b)
+
+    expect(result).toBeDeepCloseTo(new Point(1.5, 1.5, 2.9))
+    expect(result).toBeInstanceOf(Point)
   })
 
   it('should add two vectors', () => {
@@ -17,7 +31,10 @@ describe('add()', () => {
     const a = new Vector(1.5, 2.5, -1.0)
     const b = new Vector(0.0, -1.0, 3.9)
 
-    expect(add(a, b)).toBeDeepCloseTo(new Vector(1.5, 1.5, 2.9))
+    const result = add(a, b)
+
+    expect(result).toBeDeepCloseTo(new Vector(1.5, 1.5, 2.9))
+    expect(result).toBeInstanceOf(Vector)
   })
 
   it('should add two colors', () => {
@@ -25,7 +42,10 @@ describe('add()', () => {
     const a = new Color(0.9, 0.6, 0.75)
     const b = new Color(0.7, 0.1, 0.25)
 
-    expect(add(a, b)).toBeDeepCloseTo(new Color(1.6, 0.7, 1.0, 2.0))
+    const result = add(a, b)
+
+    expect(result).toBeDeepCloseTo(new Color(1.6, 0.7, 1.0, 2.0))
+    expect(result).toBeInstanceOf(Color)
   })
 })
 
@@ -97,7 +117,10 @@ describe('multiply()', () => {
     const v = new Vector(1, -2, 3)
     const s = 3
 
-    expect(multiply(v, s)).toBeDeepCloseTo(new Vector(3, -6, 9))
+    const result = multiply(v, s)
+
+    expect(result).toBeDeepCloseTo(new Vector(3, -6, 9))
+    expect(result).toBeInstanceOf(Vector)
   })
 
   it('should multiply a vector by a fraction', () => {
@@ -105,7 +128,10 @@ describe('multiply()', () => {
     const v = new Vector(1, -2 ,3)
     const s = 0.5
 
-    expect(multiply(v, s)).toBeDeepCloseTo(new Vector(0.5, -1, 1.5))
+    const result = multiply(v, s)
+
+    expect(result).toBeDeepCloseTo(new Vector(0.5, -1, 1.5))
+    expect(result).toBeInstanceOf(Vector)
   })
 
   it('should multiply a color by an integer', () => {
@@ -113,7 +139,10 @@ describe('multiply()', () => {
     const c = new Color(1, -2, 3)
     const s = 3
 
-    expect(multiply(c, s)).toBeDeepCloseTo(new Color(3, -6, 9, 3))
+    const result = multiply(c, s)
+
+    expect(result).toBeDeepCloseTo(new Color(3, -6, 9, 3))
+    expect(result).toBeInstanceOf(Color)
   })
 
   it('should multiply two colors', () => {
@@ -121,7 +150,10 @@ describe('multiply()', () => {
     const c1 = new Color(1, 0.2, 0.4)
     const c2 = new Color(0.9, 1, 0.1)
 
-    expect(multiply(c1, c2)).toBeDeepCloseTo(new Color(0.9, 0.2, 0.04))
+    const result = multiply(c1, c2)
+
+    expect(result).toBeDeepCloseTo(new Color(0.9, 0.2, 0.04))
+    expect(result).toBeInstanceOf(Color)
   })
 })
 
