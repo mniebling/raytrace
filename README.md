@@ -8,4 +8,7 @@ with TypeScript.
 Prerequisites: You'll need Node and NPM installed on your machine.
 
 Set up the project by cloning the repo & running `npm install`.
+
+Run locally for development with `npm start`.
+
 Run tests with `npm test`.
