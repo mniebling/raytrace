@@ -77,8 +77,6 @@ function tick () {
 
   if (!ctx) throw new Error(`No canvas context.`)
 
-  console.info(`(${p.position.x}, ${p.position.y})`)
-
   updateEnv(env, p)
   ctx.putImageData(updateCanvas(canvas, p), 0, 0)
 
