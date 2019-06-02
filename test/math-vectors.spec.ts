@@ -1,5 +1,5 @@
-import { negate, magnitude, normalize, dot, cross } from '@/math-vectors'
-import { Vector } from '@/tuples'
+import { negate, magnitude, normalize, dot, cross } from '@/engine/math-vectors'
+import { Vector } from '@/engine/tuples'
 
 
 describe('cross()', () => {

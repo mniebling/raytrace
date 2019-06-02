@@ -1,4 +1,4 @@
-import { Tuple, Point, Vector, Color } from '@/tuples'
+import { Tuple, Point, Vector, Color } from '@/engine/tuples'
 
 
 /**

@@ -19,6 +19,11 @@ module.exports = {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        use: 'html-loader',
+        exclude: /index.html/
       }
     ]
   },
@@ -35,6 +40,9 @@ module.exports = {
     })
   ],
   resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.esm.js'
+    },
     extensions: ['.ts', '.js'],
     plugins: [new TsConfigPathsPlugin()]
   }

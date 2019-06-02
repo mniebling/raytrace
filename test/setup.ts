@@ -1,5 +1,5 @@
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to'
-import { equal } from '@/math-tuples'
+import { equal } from '@/engine/math-tuples'
 
 // Set up custom matchers
 function toFloatingEqual (received: number, comparison: number) {
@@ -24,7 +24,7 @@ expect.extend({
 declare global {
   namespace NodeJS {
     interface Global {
-        ImageData: Function
+      ImageData: Function
     }
   }
 }

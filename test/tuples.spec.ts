@@ -1,4 +1,4 @@
-import { Tuple, isPoint, isVector, Point, Vector, Color } from '@/tuples'
+import { Tuple, isPoint, isVector, Point, Vector, Color } from '@/engine/tuples'
 
 
 describe('new Tuple()', () => {
