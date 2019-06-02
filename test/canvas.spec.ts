@@ -1,5 +1,5 @@
-import { Canvas, clamp } from '@/canvas'
-import { Color } from '@/tuples'
+import { Canvas, clamp } from '@/engine/canvas'
+import { Color } from '@/engine/tuples'
 
 
 describe('new Canvas()', () => {

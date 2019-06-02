@@ -1,5 +1,5 @@
-import { add, divide, equal, multiply, subtract } from '@/math-tuples'
-import { Color, Point, Tuple, Vector } from '@/tuples'
+import { add, divide, equal, multiply, subtract } from '@/engine/math-tuples'
+import { Color, Point, Tuple, Vector } from '@/engine/tuples'
 
 
 describe('add()', () => {
