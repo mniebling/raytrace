@@ -1,5 +1,6 @@
 import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to'
-import { equal } from '@/engine/math-tuples'
+import { equal } from '@/engine/math-general'
+
 
 // Set up custom matchers
 function toFloatingEqual (received: number, comparison: number) {

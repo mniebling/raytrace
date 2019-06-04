@@ -1,4 +1,4 @@
-import { Canvas, clamp } from '@/engine/canvas'
+import { Canvas } from '@/engine/canvas'
 import { Color } from '@/engine/tuples'
 
 
@@ -19,34 +19,6 @@ describe('new Canvas()', () => {
     const black = new Color(0, 0, 0)
 
     canvas.pixelData.forEach(pixel => expect(pixel).toEqual(black))
-  })
-})
-
-describe('clamp()', () => {
-
-  it('should clamp 0 to 0', () => {
-
-    expect(clamp(0)).toFloatingEqual(0)
-  })
-
-  it('should clamp 1 to 255', () => {
-
-    expect(clamp(1)).toFloatingEqual(255)
-  })
-
-  it('should clamp 0.5 to 128', () => {
-
-    expect(clamp(0.5)).toFloatingEqual(128) // round up from 127.5
-  })
-
-  it('should clamp -1 to 0', () => {
-
-    expect(clamp(-1)).toFloatingEqual(0)
-  })
-
-  it('should clamp 300 to 255', () => {
-
-    expect(clamp(300)).toFloatingEqual(255)
   })
 })
 

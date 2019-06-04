@@ -1,4 +1,5 @@
-import { Color } from './tuples'
+import { clamp } from '@/engine/math-general'
+import { Color } from '@/engine/tuples'
 
 
 export class Canvas {
@@ -77,17 +78,4 @@ export class Canvas {
     // has some magic somewhere.
     return new ImageData(data, this.width, this.height)
   }
-}
-
-/**
- * Maps a value from the 0-1 range to 0-255 and rounds it to an integer.
- *
- * Values outside of 0-1 will return 0 or 255 respectively.
- */
-export function clamp (value: number) {
-
-  if (value < 0) value = 0
-  if (value > 1) value = 1
-
-  return Math.round(value * 255)
 }

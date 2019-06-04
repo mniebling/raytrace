@@ -29,28 +29,6 @@ export function add (a: Tuple, b: Tuple): Tuple {
 }
 
 /**
- * Compare two floating point numbers or tuples for equivalence.
- */
-export function equal (a: number, b: number): boolean
-export function equal (a: Tuple, b: Tuple): boolean
-export function equal (a: number | Tuple, b: number | Tuple): boolean {
-
-  if (typeof a === 'number' && typeof b === 'number') {
-    return Math.abs(a - b) < Number.EPSILON
-  }
-
-  if (a instanceof Tuple && b instanceof Tuple) {
-    return equal(a._tuple[0], b._tuple[0])
-      && equal(a._tuple[1], b._tuple[1])
-      && equal(a._tuple[2], b._tuple[2])
-      && equal(a._tuple[3], b._tuple[3])
-  }
-
-  throw new Error(`Types of a & b must be both numbers or both tuples.`)
-}
-
-
-/**
  * Divide a tuple by a scalar constant.
  */
 export function divide (t: Tuple, scalar: number) {

@@ -1,4 +1,4 @@
-import { equal } from '@/engine/math-tuples'
+import { equal } from '@/engine/math-general'
 
 
 /**

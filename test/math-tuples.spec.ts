@@ -1,4 +1,4 @@
-import { add, divide, equal, multiply, subtract } from '@/engine/math-tuples'
+import { add, divide, multiply, subtract } from '@/engine/math-tuples'
 import { Color, Point, Tuple, Vector } from '@/engine/tuples'
 
 
@@ -89,24 +89,6 @@ describe('divide()', () => {
     const s = 0
 
     expect(() => divide(v, s)).toThrow()
-  })
-})
-
-describe('equal()', () => {
-
-  it('should compare two floating point numbers', () => {
-
-    expect(equal(1.0, 1.0)).toBe(true)
-    expect(equal(1.0, 1.1)).toBe(false)
-  })
-
-  it('should compare two tuples', () => {
-
-    const a = new Tuple(1.0, 2.5, -3.0, 1.0)
-    const b = new Tuple(6.7, 2.5, 3.0, 0.0)
-
-    expect(equal(a, a)).toBe(true)
-    expect(equal(a, b)).toBe(false)
   })
 })
 
