@@ -38,7 +38,7 @@ function runDemo (): void {
     wind: new Vector(-0.01, 0, 0)
   }
 
-  const p: Projectile = {
+  const projectile: Projectile = {
     position: new Point(0, 1, 0),
     velocity: multiply(normalize(new Vector(1, 3, 0)), 10.0)
   }
@@ -56,8 +56,8 @@ function runDemo (): void {
   function projectilePositionToCtxPosition(canvas: Canvas, p: Projectile): Point {
 
     return new Point(
-      Math.floor(p.position.x),
-      Math.floor((p.position.y > 0) ? canvas.height - p.position.y : 1),
+      Math.round(p.position.x),
+      Math.round((p.position.y > 0) ? canvas.height - p.position.y : 1),
       p.position.z
     )
   }
@@ -78,10 +78,10 @@ function runDemo (): void {
 
     if (!ctx) throw new Error(`No canvas context.`)
 
-    updateEnv(env, p)
-    ctx.putImageData(updateCanvas(canvas, p), 0, 0)
+    updateEnv(env, projectile)
+    ctx.putImageData(updateCanvas(canvas, projectile), 0, 0)
 
-    if (p.position.y > 0) window.webkitRequestAnimationFrame(tick)
+    if (projectile.position.y > 0) window.requestAnimationFrame(tick)
   }
 
   window.requestAnimationFrame(tick)
