@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { Canvas } from '@/engine/canvas'
-import { add, multiply } from '@/engine/math-tuples'
+import { add, multiply } from '@/engine/math-general'
 import { normalize } from '@/engine/math-vectors'
 import { Point, Vector, Color } from '@/engine/tuples'
 

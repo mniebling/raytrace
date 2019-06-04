@@ -3,7 +3,7 @@ import { Matrix } from '@/engine/matrix'
 
 describe('new Matrix()', () => {
 
-  test('should create a 2×2 matrix', () => {
+  it('should create a 2×2 matrix', () => {
 
     const m = new Matrix([
       -3,  5,
@@ -16,7 +16,7 @@ describe('new Matrix()', () => {
     expect(m.getValueAt(1, 1)).toFloatingEqual(-2)
   })
 
-  test('should create a 3×3 matrix', () => {
+  it('should create a 3×3 matrix', () => {
 
     const m = new Matrix([
       -3,  5,  0,
@@ -29,7 +29,7 @@ describe('new Matrix()', () => {
     expect(m.getValueAt(2, 2)).toFloatingEqual(1)
   })
 
-  test('should create a 4×4 matrix', () => {
+  it('should create a 4×4 matrix', () => {
 
     const m = new Matrix([
       1,    2,    3,    4,
@@ -46,7 +46,7 @@ describe('new Matrix()', () => {
     expect(m.getValueAt(3, 2)).toFloatingEqual(15.5)
   })
 
-  test('should freak out about uneven matrices', () => {
+  it('should freak out about uneven matrices', () => {
 
     function createUnevenMatrix () {
       const m = new Matrix([
@@ -62,7 +62,7 @@ describe('new Matrix()', () => {
 
 describe('.getValueAt()', () => {
 
-  test('should get the value given a valid row & col', () => {
+  it('should get the value given a valid row & col', () => {
 
     const identity = new Matrix()
 
@@ -74,13 +74,40 @@ describe('.getValueAt()', () => {
     expect(identity.getValueAt(3, 3)).toFloatingEqual(1)
   })
 
-  test('should freak out about invalid rows or cols', () => {
+  it('should freak out about invalid rows or cols', () => {
 
     const identity = new Matrix()
 
-    expect(() => identity.getValueAt(-1, 0)).toThrow()
-    expect(() => identity.getValueAt(0, -1)).toThrow()
-    expect(() => identity.getValueAt(4, 0)).toThrow()
-    expect(() => identity.getValueAt(0, 4)).toThrow()
+    expect(() => identity.getValueAt(-1,  0)).toThrow()
+    expect(() => identity.getValueAt( 0, -1)).toThrow()
+    expect(() => identity.getValueAt( 4,  0)).toThrow()
+    expect(() => identity.getValueAt( 0,  4)).toThrow()
+  })
+})
+
+describe('.setValueAt()', () => {
+
+  it('should set the value given a valid row & col', () => {
+
+    const m = new Matrix()
+
+    m.setValueAt(0, 0, 10)
+    expect(m.getValueAt(0, 0)).toFloatingEqual(10)
+
+     m.setValueAt(1, 2, 3.4)
+    expect(m.getValueAt(1, 2)).toFloatingEqual(3.4)
+
+    m.setValueAt(3, 3, -5)
+    expect(m.getValueAt(3, 3)).toFloatingEqual(-5)
+  })
+
+  it('should freak out about invalid rows or cols', () => {
+
+    const m = new Matrix()
+
+    expect(() => m.setValueAt(-1,  0, 0)).toThrow()
+    expect(() => m.setValueAt( 0, -1, 0)).toThrow()
+    expect(() => m.setValueAt( 4,  0, 0)).toThrow()
+    expect(() => m.setValueAt( 0,  4, 0)).toThrow()
   })
 })

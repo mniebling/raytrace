@@ -32,9 +32,7 @@ export class Matrix {
     this.columns = Math.sqrt(this.data.length)
   }
 
-  /**
-   * Rows and columns are 0-indexed.
-   */
+  /** Rows and columns are 0-indexed. */
   getValueAt (row: number, column: number) {
 
     if (row < 0 || column < 0) throw new Error(`Row and column must be > 0.`)
@@ -42,5 +40,15 @@ export class Matrix {
     if (column >= this.columns) throw new Error(`Column must be < number of columns (${this.columns})`)
 
     return this.data[(row * this.columns) + column]
+  }
+
+  /** Rows and columns are 0-indexed. */
+  setValueAt (row: number, column: number, value: number) {
+
+    if (row < 0 || column < 0) throw new Error(`Row and column must be > 0.`)
+    if (row >= this.rows) throw new Error(`Row must be < number of rows (${this.rows})`)
+    if (column >= this.columns) throw new Error(`Column must be < number of columns (${this.columns})`)
+
+    this.data[(row * this.columns) + column] = value
   }
 }

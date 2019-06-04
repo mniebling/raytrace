@@ -3,7 +3,7 @@ import { Tuple, isPoint, isVector, Point, Vector, Color } from '@/engine/tuples'
 
 describe('new Tuple()', () => {
 
-  test('should create points when w = 1.0', () => {
+  it('should create points when w = 1.0', () => {
 
     const result = new Tuple(4.3, -4.2, 3.1, 1.0)
 
@@ -16,7 +16,7 @@ describe('new Tuple()', () => {
     expect(isVector(result)).toBe(false)
   })
 
-  test('should create vectors when w = 0.0', () => {
+  it('should create vectors when w = 0.0', () => {
 
     const result = new Tuple(4.3, -4.2, 3.1, 0.0)
 
@@ -32,7 +32,7 @@ describe('new Tuple()', () => {
 
 describe('new Color()', () => {
 
-  test('should create colors', () => {
+  it('should create colors', () => {
 
     const result = new Color(4.3, -4.2, 3.1)
 
@@ -45,7 +45,7 @@ describe('new Color()', () => {
 
 describe('new Point()', () => {
 
-  test('should create points', () => {
+  it('should create points', () => {
 
     const result = new Point(2.7, 1.0, -9.2)
 
@@ -61,7 +61,7 @@ describe('new Point()', () => {
 
 describe('new Vector()', () => {
 
-  test('should create vectors', () => {
+  it('should create vectors', () => {
 
     const result = new Vector(2.7, 1.0, -9.2)
 
@@ -77,7 +77,7 @@ describe('new Vector()', () => {
 
 describe('isPoint()', () => {
 
-  test('should correctly detect points', () => {
+  it('should correctly detect points', () => {
 
     const point = new Tuple(-1.0, 2.5, -3.2, 1.0)
     const vector = new Tuple(2.0, 3.7, -1.0, 0.0)
@@ -89,7 +89,7 @@ describe('isPoint()', () => {
 
 describe('isVector()', () => {
 
-  test('should correctly detect vectors', () => {
+  it('should correctly detect vectors', () => {
 
     const point = new Tuple(-1.0, 2.5, -3.2, 1.0)
     const vector = new Tuple(2.0, 3.7, -1.0, 0.0)
