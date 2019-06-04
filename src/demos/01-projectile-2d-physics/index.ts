@@ -43,7 +43,8 @@ function runDemo (): void {
     velocity: multiply(normalize(new Vector(1, 3, 0)), 10.0)
   }
 
-  // When iterating, we want to
+  // In the physics loop, we calculate the projectile's natural movement and
+  // then update its velocity according to the combined environmental forces.
   function updateEnv (env: Environment, proj: Projectile) {
 
     proj.position = add(proj.position, proj.velocity)
