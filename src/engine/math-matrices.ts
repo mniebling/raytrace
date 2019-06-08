@@ -1,6 +1,13 @@
 import { Matrix } from '@/engine/matrix'
 
 
+export function determinant(m: Matrix): number {
+
+  if (m.rows > 2 || m.columns > 2) throw new Error(`Can't find the determinant of matrices larger than 2×2.`)
+
+  return (m.data[0] * m.data[3]) - (m.data[1] * m.data[2])
+}
+
 /**
  * Transposing a matrix turns its rows into columns and its columns into rows.
  *
@@ -13,7 +20,7 @@ import { Matrix } from '@/engine/matrix'
  * [3, 4, 5, 6]    [4, 8, 2, 6]
  * ```
  */
-export function transpose (m: Matrix) {
+export function transpose (m: Matrix): Matrix {
 
   const result = new Matrix()
 

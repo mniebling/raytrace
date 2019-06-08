@@ -1,6 +1,26 @@
-import { transpose } from '@/engine/math-matrices'
+import { determinant, transpose } from '@/engine/math-matrices'
 import { Matrix } from '@/engine/matrix'
 
+
+describe('.determinant()', () => {
+
+  it('should find the determinant of a 2×2 matrix', () => {
+
+    const m = new Matrix([
+       1, 5,
+      -3, 2
+    ])
+
+    expect(determinant(m)).toFloatingEqual(17)
+  })
+
+  it('should freak out about matrices larger than 2×2', () => {
+
+    const identity = new Matrix()
+
+    expect(() => determinant(identity)).toThrow()
+  })
+})
 
 describe('.transpose()', () => {
 
