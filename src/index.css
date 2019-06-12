@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Cooper Hewitt';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Cooper Hewitt Light'), local('CooperHewitt-Light'),
+       url('fonts/CooperHewitt-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cooper Hewitt';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Cooper Hewitt Book'), local('CooperHewitt-Book'),
+       url('fonts/CooperHewitt-Book.woff') format('woff');
+}
+
+body {
+  background-color: #131D26;
+  color: #E1DDCF;
+  font-family: 'Cooper Hewitt';
+  font-weight: 300;
+  margin: 40px;
+}
+
+p {
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+h1 {
+  color: #F2D785;
+  font-family: 'Cooper Hewitt';
+  font-weight: 200;
+}
+
+a, a:visited {
+  color: #FFF7DD;
+  line-height: 1.6;
+}
+
+.fade-in-title {
+  animation-name: fadeInTitle;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+}
+
+.fade-in-link {
+  animation-name: fadeInLink;
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+  animation-timing-function: cubic-bezier(0.6, 1, 0.4, 1.2);
+  display: block;
+}
+
+/* Let's see if I get tired enough of this to add a CSS preprocessor and a loop */
+.fade-in-link:nth-of-type(1) { animation-delay: 1.0s; }
+.fade-in-link:nth-of-type(2) { animation-delay: 1.25s; }
+.fade-in-link:nth-of-type(3) { animation-delay: 1.5s; }
+
+@keyframes fadeInTitle {
+  0%   { color: #131D26; }
+  100% { color: #F2D785; }
+}
+
+@keyframes fadeInLink {
+  0% {
+    color: #131D26;
+    transform: translateX(-20px);
+  }
+  100% {
+    color: #FFF7DD;
+    transform: translateX(0);
+  }
+}
