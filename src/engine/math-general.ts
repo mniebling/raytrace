@@ -83,6 +83,12 @@ export function equal (a: number | Tuple | Matrix, b: number | Tuple | Matrix): 
   throw new Error(`Types of a & b must both be numbers, tuples, or matrices.`)
 }
 
+/** Returns true if the number is even. */
+export const isEven = (n: number) => n % 2 === 0
+
+/** Returns true if the number is odd. */
+export const isOdd = (n: number) => n % 2 !== 0
+
 /**
  * Multiplies tuples or matrices by other tuples, matrices or scalars.
  */

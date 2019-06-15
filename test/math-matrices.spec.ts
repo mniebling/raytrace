@@ -1,6 +1,24 @@
-import { determinant, minor, transpose, submatrix } from '@/engine/math-matrices'
+import { cofactor, determinant, minor, transpose, submatrix } from '@/engine/math-matrices'
 import { Matrix } from '@/engine/matrix'
 
+
+describe('.cofactor()', () => {
+
+  it('should calculate the cofactor of a 3×3 matrix', () => {
+
+    const m = new Matrix([
+      3,  5,  0,
+      2, -1, -7,
+      6, -1,  5
+    ])
+
+    expect(minor(m, 0, 0)).toFloatingEqual(-12)
+    expect(cofactor(m, 0, 0)).toFloatingEqual(-12)
+
+    expect(minor(m, 1, 0)).toFloatingEqual(25)
+    expect(cofactor(m, 1, 0)).toFloatingEqual(-25)
+  })
+})
 
 describe('.determinant()', () => {
 

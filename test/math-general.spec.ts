@@ -1,9 +1,9 @@
-import { add, clamp, divide, equal, multiply, subtract } from '@/engine/math-general'
+import { add, clamp, divide, equal, isEven, isOdd, multiply, subtract } from '@/engine/math-general'
 import { Matrix } from '@/engine/matrix'
 import { Color, Point, Tuple, Vector } from '@/engine/tuples'
 
 
-describe('add()', () => {
+describe('.add()', () => {
 
   it('should add a point and a vector', () => {
 
@@ -50,7 +50,7 @@ describe('add()', () => {
   })
 })
 
-describe('clamp()', () => {
+describe('.clamp()', () => {
 
   it('should clamp 0 to 0', () => {
 
@@ -78,7 +78,7 @@ describe('clamp()', () => {
   })
 })
 
-describe('divide()', () => {
+describe('.divide()', () => {
 
   it('should divide a vector by a scalar', () => {
 
@@ -121,7 +121,7 @@ describe('divide()', () => {
   })
 })
 
-describe('equal()', () => {
+describe('.equal()', () => {
 
   it('should compare two floating point numbers', () => {
 
@@ -167,7 +167,35 @@ describe('equal()', () => {
   })
 })
 
-describe('multiply()', () => {
+describe('.isEven()', () => {
+
+  it('should return true for even numbers', () => {
+
+    expect(isEven(0)).toBe(true)
+    expect(isEven(2)).toBe(true)
+  })
+
+  it('should return false for odd numbers', () => {
+
+    expect(isEven(1)).toBe(false)
+  })
+})
+
+describe('.isOdd()', () => {
+
+  it('should return false for even numbers', () => {
+
+    expect(isOdd(0)).toBe(false)
+    expect(isOdd(2)).toBe(false)
+  })
+
+  it('should return true for odd numbers', () => {
+
+    expect(isOdd(1)).toBe(true)
+  })
+})
+
+describe('.multiply()', () => {
 
   it('should multiply a vector by an integer', () => {
 
@@ -280,7 +308,7 @@ describe('multiply()', () => {
   })
 })
 
-describe('subtract()', () => {
+describe('.subtract()', () => {
 
   it('should subtract two points', () => {
 

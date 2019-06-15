@@ -1,6 +1,23 @@
+import { isOdd } from '@/engine/math-general'
 import { Matrix } from '@/engine/matrix'
 
 
+/**
+ * The cofactor at position (i, j) is the minor at (i, j) which may have the
+ * sign negated, depending on the sign of the other matrix elements.
+ */
+export function cofactor (m: Matrix, row: number, column: number): number {
+
+  const min = minor(m, row, column)
+
+  return isOdd(row + column) ? -min : min
+}
+
+
+/**
+ * The determinant is a scalar value that encodes certain properties of the
+ * transformation described by the matrix (vague, right?).
+ */
 export function determinant (m: Matrix): number {
 
   if (m.rows > 2 || m.columns > 2) throw new Error(`Can't find the determinant of matrices larger than 2×2.`)
