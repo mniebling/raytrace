@@ -58,7 +58,7 @@ function runDemo (): void {
 
     return new Point(
       Math.round(p.position.x),
-      Math.round((p.position.y > 0) ? canvas.height - p.position.y : 1),
+      Math.round((p.position.y > 0) ? canvas.height - p.position.y : canvas.height - 1),
       p.position.z
     )
   }

@@ -15,7 +15,7 @@ export function determinant (m: Matrix): number {
  */
 export function submatrix (m: Matrix, rowToRemove: number, colToRemove: number): Matrix {
 
-  const submatrix = new Array((m.rows - 1) * (m.columns -1))
+  const submatrix = new Array((m.rows - 1) * (m.columns - 1))
   let i = 0
 
   for (let row = 0; row < m.rows; row++) {
