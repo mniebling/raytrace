@@ -1,4 +1,4 @@
-import { determinant, transpose, submatrix } from '@/engine/math-matrices'
+import { determinant, minor, transpose, submatrix } from '@/engine/math-matrices'
 import { Matrix } from '@/engine/matrix'
 
 
@@ -19,6 +19,21 @@ describe('.determinant()', () => {
     const identity = new Matrix()
 
     expect(() => determinant(identity)).toThrow()
+  })
+})
+
+describe('.minor()', () => {
+
+  it('should calculate the minor of a 3×3 matrix', () => {
+
+    const m = new Matrix([
+      3,  5,  0,
+      2, -1, -7,
+      6, -1,  5
+    ])
+
+    expect(determinant(submatrix(m, 1, 0))).toFloatingEqual(25)
+    expect(minor(m, 1, 0)).toFloatingEqual(25)
   })
 })
 

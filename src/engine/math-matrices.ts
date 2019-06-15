@@ -9,6 +9,15 @@ export function determinant (m: Matrix): number {
 }
 
 /**
+ * The minor of a matrix element at position (i, j) is the determinant of the
+ * submatrix at (i, j).
+ */
+export function minor (m: Matrix, row: number, column: number): number {
+
+  return determinant(submatrix(m, row, column))
+}
+
+/**
  * Returns a copy of the matrix with the given row and column removed.
  *
  * The row and column are 0-indexed.
