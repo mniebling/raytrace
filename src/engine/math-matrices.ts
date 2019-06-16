@@ -20,14 +20,31 @@ export function cofactor (m: Matrix, row: number, column: number): number {
  */
 export function determinant (m: Matrix): number {
 
-  if (m.rows > 2 || m.columns > 2) throw new Error(`Can't find the determinant of matrices larger than 2×2.`)
+  if (m.rows !== m.columns) throw new Error(`Can only find the determinant of square matrices.`)
 
-  return (m.data[0] * m.data[3]) - (m.data[1] * m.data[2])
+  // For a 2×2 matrix, the determinant is calculated by multiplying across the
+  // diagonals and then subtracting the results.
+  if (m.rows === 2 && m.columns === 2) {
+    return (m.data[0] * m.data[3]) - (m.data[1] * m.data[2])
+  }
+
+  // For larger matrices we pick any row, multiply each element in the row by
+  // its cofactor, then add the products together.
+  //
+  // This is an implementation of the Laplace expansion:
+  // https://en.wikipedia.org/wiki/Laplace_expansion
+  let determinant = 0
+
+  for (let i = 0; i < m.columns; i++) {
+    determinant += (m.getValueAt(0, i) * cofactor(m, 0, i))
+  }
+
+  return determinant
 }
 
 /**
  * The minor of a matrix element at position (i, j) is the determinant of the
- * submatrix at (i, j).
+ * submatrix with row `i` and column `j` removed.
  */
 export function minor (m: Matrix, row: number, column: number): number {
 

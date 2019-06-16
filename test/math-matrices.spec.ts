@@ -32,11 +32,36 @@ describe('.determinant()', () => {
     expect(determinant(m)).toFloatingEqual(17)
   })
 
-  it('should freak out about matrices larger than 2×2', () => {
+  it('should find the determinant of a 3×3 matrix', () => {
 
-    const identity = new Matrix()
+    const m = new Matrix([
+       1, 2,  6,
+      -5, 8, -4,
+       2, 6,  4
+    ])
 
-    expect(() => determinant(identity)).toThrow()
+    expect(cofactor(m, 0, 0)).toFloatingEqual(56)
+    expect(cofactor(m, 0, 1)).toFloatingEqual(12)
+    expect(cofactor(m, 0, 2)).toFloatingEqual(-46)
+
+    expect(determinant(m)).toFloatingEqual(-196)
+  })
+
+  it('should find the determinant of a 4×4 matrix', () => {
+
+    const m = new Matrix([
+      -2, -8,  3,  5,
+      -3,  1,  7,  3,
+       1,  2, -9,  6,
+      -6,  7,  7, -9
+    ])
+
+    expect(cofactor(m, 0, 0)).toFloatingEqual(690)
+    expect(cofactor(m, 0, 1)).toFloatingEqual(447)
+    expect(cofactor(m, 0, 2)).toFloatingEqual(210)
+    expect(cofactor(m, 0, 3)).toFloatingEqual(51)
+
+    expect(determinant(m)).toFloatingEqual(-4071)
   })
 })
 
