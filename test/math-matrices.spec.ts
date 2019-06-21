@@ -87,7 +87,7 @@ describe('.inverse()', () => {
 
     const invM = inverse(m)
 
-    // Values in `invM` equal the cofactor at that position divided by the determinant.
+    // Values in `invM` equal the cofactor at the transposed position divided by the determinant.
     expect(determinant(m)).toFloatingEqual(532)
 
     expect(cofactor(m, 2, 3)).toFloatingEqual(-160)

@@ -98,7 +98,8 @@ export function multiply (c1: Color, c2: Color): Color
 export function multiply (c: Color, scalar: number): Color
 export function multiply (m1: Matrix, m2: Matrix): Matrix
 export function multiply (m: Matrix, scalar: number): Matrix
-export function multiply (m: Matrix, t: Tuple): Tuple
+export function multiply (m: Matrix, p: Point): Point
+export function multiply (m: Matrix, v: Vector): Vector
 export function multiply (a: Tuple | Matrix, b: number | Tuple | Matrix): Tuple | Matrix {
 
   if (a instanceof Matrix && typeof b === 'number') {
@@ -126,20 +127,36 @@ export function multiply (a: Tuple | Matrix, b: number | Tuple | Matrix): Tuple 
     return m
   }
 
-  if (a instanceof Matrix && b instanceof Tuple) {
+  if (a instanceof Matrix && b instanceof Point) {
 
-    const t = new Tuple(0, 0, 0, 0)
+    const p = new Point(0, 0, 0)
 
     for (let row = 0; row <= 3; row++) {
 
-      t._tuple[row]
+      p._tuple[row]
         = a.getValueAt(row, 0) * b._tuple[0]
         + a.getValueAt(row, 1) * b._tuple[1]
         + a.getValueAt(row, 2) * b._tuple[2]
         + a.getValueAt(row, 3) * b._tuple[3]
     }
 
-    return t
+    return p
+  }
+
+   if (a instanceof Matrix && b instanceof Vector) {
+
+    const v = new Vector(0, 0, 0)
+
+    for (let row = 0; row <= 3; row++) {
+
+      v._tuple[row]
+        = a.getValueAt(row, 0) * b._tuple[0]
+        + a.getValueAt(row, 1) * b._tuple[1]
+        + a.getValueAt(row, 2) * b._tuple[2]
+        + a.getValueAt(row, 3) * b._tuple[3]
+    }
+
+    return v
   }
 
   let t0: number = 0, t1: number = 0, t2: number = 0, t3: number = 0

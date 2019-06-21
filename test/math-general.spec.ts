@@ -280,7 +280,7 @@ describe('.multiply()', () => {
     expect(multiply(m1, m2)).toBeDeepCloseTo(expectation)
   })
 
-  it('should multiply a matrix by a tuple', () => {
+  it('should multiply a matrix by a point', () => {
 
     const m = new Matrix([
       1, 2, 3, 4,
@@ -289,9 +289,11 @@ describe('.multiply()', () => {
       0, 0, 0, 1
     ])
 
-    const t = new Tuple(1, 2, 3, 1)
+    const p = new Point(1, 2, 3)
+    const result = multiply(m, p)
 
-    expect(multiply(m, t)).toBeDeepCloseTo(new Tuple(18, 24, 33, 1))
+    expect(result).toBeDeepCloseTo(new Point(18, 24, 33))
+    expect(result).toBeInstanceOf(Point)
   })
 
   it('should multiply a matrix by the identity matrix', () => {
