@@ -43,6 +43,14 @@ export function determinant (m: Matrix): number {
 }
 
 /**
+ * Returns true if the matrix can be inverted.
+ */
+export function isInvertible (m: Matrix): boolean {
+
+  return determinant(m) !== 0
+}
+
+/**
  * The minor of a matrix element at position (i, j) is the determinant of the
  * submatrix with row `i` and column `j` removed.
  */

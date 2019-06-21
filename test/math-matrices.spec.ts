@@ -1,5 +1,13 @@
-import { cofactor, determinant, minor, transpose, submatrix } from '@/engine/math-matrices'
 import { Matrix } from '@/engine/matrix'
+import {
+  cofactor,
+  determinant,
+  isInvertible,
+  minor,
+  transpose,
+  submatrix
+} from '@/engine/math-matrices'
+
 
 
 describe('.cofactor()', () => {
@@ -62,6 +70,35 @@ describe('.determinant()', () => {
     expect(cofactor(m, 0, 3)).toFloatingEqual(51)
 
     expect(determinant(m)).toFloatingEqual(-4071)
+  })
+})
+
+describe('.isInvertible()', () => {
+
+  it('should return true for invertible matrices', () => {
+
+    const m = new Matrix([
+      6,  4, 4,  4,
+      5,  5, 7,  6,
+      4, -9, 3, -7,
+      9,  1, 7, -6
+    ])
+
+    expect(determinant(m)).toFloatingEqual(-2120)
+    expect(isInvertible(m)).toBe(true)
+  })
+
+  it('should return false for non-invertible matrices', () => {
+
+    const m = new Matrix([
+      -4,  2, -2, -3,
+       9,  6,  2,  6,
+       0, -5,  1, -5,
+       0,  0,  0,  0
+    ])
+
+    expect(determinant(m)).toFloatingEqual(0)
+    expect(isInvertible(m)).toBe(false)
   })
 })
 
