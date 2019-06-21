@@ -43,6 +43,28 @@ export function determinant (m: Matrix): number {
 }
 
 /**
+ * Returns the inverse of matrix m.
+ */
+export function inverse (m: Matrix): Matrix {
+
+  if (!isInvertible(m)) throw new Error(`This matrix isn't invertible.`)
+
+  const inverted = new Matrix(m.data) // we just want it to be the same size as `m`
+  const detM = determinant(m)
+
+  for (let row = 0; row < m.rows; row++) {
+    for (let col = 0; col < m.columns; col++) {
+
+      // Divide the cofactor at the given position by the determinant of `m`,
+      // then transpose as we go by setting at [col, row] instead of [row, col].
+      inverted.setValueAt(col, row, cofactor(m, row, col) / detM)
+    }
+  }
+
+  return inverted
+}
+
+/**
  * Returns true if the matrix can be inverted.
  */
 export function isInvertible (m: Matrix): boolean {
