@@ -1,8 +1,79 @@
-import { multiply } from '@/engine/math-general'
+import { π, multiply } from '@/engine/math-general'
 import { inverse } from '@/engine/math-matrices'
-import { scale, translate } from '@/engine/transformations'
+import { rotateX, rotateY, rotateZ, scale, translate } from '@/engine/transformations'
 import { Point, Vector } from '@/engine/tuples'
 
+
+describe('.rotateX()', () => {
+
+  it('should rotate a point around the x axis', () => {
+
+    const p = new Point(0, 1, 0)
+
+    const eighthCircle = rotateX(π / 4)
+    const quarterCircle = rotateX(π / 2)
+
+    expect(multiply(eighthCircle, p)).toBeDeepCloseTo(new Point(
+      0,
+      Math.sqrt(2) / 2,
+      Math.sqrt(2) / 2
+    ))
+
+    expect(multiply(quarterCircle, p)).toBeDeepCloseTo(new Point(0, 0, 1))
+  })
+
+  test('multiplying by an inverse transform rotates in reverse', () => {
+
+    const p = new Point(0, 1, 0)
+
+    const transform = rotateX(π / 4)
+    const invT = inverse(transform)
+
+    expect(multiply(invT, p)).toBeDeepCloseTo(new Point(
+      0,
+      Math.sqrt(2) / 2,
+      -Math.sqrt(2) / 2
+    ))
+  })
+})
+
+describe('.rotateY()', () => {
+
+  it('should rotate a point around the y axis', () => {
+
+    const p = new Point(0, 0, 1)
+
+    const eighthCircle = rotateY(π / 4)
+    const quarterCircle = rotateY(π / 2)
+
+    expect(multiply(eighthCircle, p)).toBeDeepCloseTo(new Point(
+      Math.sqrt(2) / 2,
+      0,
+      Math.sqrt(2) / 2
+    ))
+
+    expect(multiply(quarterCircle, p)).toBeDeepCloseTo(new Point(1, 0, 0))
+  })
+})
+
+describe('.rotateZ()', () => {
+
+  it('should rotate a point around the z axis', () => {
+
+    const p = new Point(0, 1, 0)
+
+    const eighthCircle = rotateZ(π / 4)
+    const quarterCircle = rotateZ(π / 2)
+
+    expect(multiply(eighthCircle, p)).toBeDeepCloseTo(new Point(
+      -Math.sqrt(2) / 2,
+       Math.sqrt(2) / 2,
+       0
+    ))
+
+    expect(multiply(quarterCircle, p)).toBeDeepCloseTo(new Point(-1, 0, 0))
+  })
+})
 
 describe('.scale()', () => {
 

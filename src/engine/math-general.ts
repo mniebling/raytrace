@@ -200,3 +200,5 @@ export function subtract (a: Tuple, b: Tuple): Tuple {
     a._tuple[3] - b._tuple[3]
   )
 }
+
+export const π = Math.PI
