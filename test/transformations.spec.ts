@@ -1,6 +1,6 @@
 import { π, multiply } from '@/engine/math-general'
 import { inverse } from '@/engine/math-matrices'
-import { rotateX, rotateY, rotateZ, scale, translate } from '@/engine/transformations'
+import { rotateX, rotateY, rotateZ, scale, skew, translate } from '@/engine/transformations'
 import { Point, Vector } from '@/engine/tuples'
 
 
@@ -103,6 +103,56 @@ describe('.scale()', () => {
   })
 })
 
+describe('.skew()', () => {
+
+  it('should move x in proportion to y', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(1, 0, 0, 0, 0, 0)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(5, 3, 4))
+  })
+
+  it('should move x in proportion to z', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(0, 1, 0, 0, 0, 0)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(6, 3, 4))
+  })
+
+  it('should move y in proportion to x', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(0, 0, 1, 0, 0, 0)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(2, 5, 4))
+  })
+
+  it('should move y in proportion to z', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(0, 0, 0, 1, 0, 0)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(2, 7, 4))
+  })
+
+  it('should move z in proportion to x', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(0, 0, 0, 0, 1, 0)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(2, 3, 6))
+  })
+
+  it('should move z in proportion to y', () => {
+
+    const p = new Point(2, 3, 4)
+    const transform = skew(0, 0, 0, 0, 0, 1)
+
+    expect(multiply(transform, p)).toBeDeepCloseTo(new Point(2, 3, 7))
+  })
+})
 
 describe('.translate()', () => {
 

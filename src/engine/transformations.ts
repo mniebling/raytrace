@@ -77,6 +77,37 @@ export function scale (x: number, y: number, z: number): Matrix {
   return transform
 }
 
+/**
+ * Returns a transform matrix representing change of specific coordinates in
+ * proportion to others (for example, `x` in proportion to `y`). The further
+ * away the dependent coordinate is from 0, the more the targeted value changes.
+ */
+export function skew (
+  x_y: number,
+  x_z: number,
+  y_x: number,
+  y_z: number,
+  z_x: number,
+  z_y: number
+): Matrix {
+
+  const transform = new Matrix()
+
+  // skew(x_y, x_z, y_x, y_z, z_x, z_y) = [ 1  x_y x_z 0]
+  //                                      [y_x  1  y_z 0]
+  //                                      [z_x z_y  1  0]
+  //                                      [ 0   0   0  1]
+
+  transform.setValueAt(0, 1, x_y)
+  transform.setValueAt(0, 2, x_z)
+  transform.setValueAt(1, 0, y_x)
+  transform.setValueAt(1, 2, y_z)
+  transform.setValueAt(2, 0, z_x)
+  transform.setValueAt(2, 1, z_y)
+
+  return transform
+}
+
 export function translate (x: number, y: number, z: number): Matrix {
 
   // translate(x, y, z) = [1 0 0 x]
