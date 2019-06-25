@@ -1,8 +1,34 @@
 import { π, multiply } from '@/engine/math-general'
 import { inverse } from '@/engine/math-matrices'
-import { rotateX, rotateY, rotateZ, scale, skew, translate } from '@/engine/transformations'
+import { chain, rotateX, rotateY, rotateZ, scale, skew, translate } from '@/engine/transformations'
 import { Point, Vector } from '@/engine/tuples'
 
+
+describe('.chain()', () => {
+
+  it('should apply transforms in the correct order', () => {
+
+    const p = new Point(1, 0, 1)
+
+    const rotation = rotateX(π / 2)
+    const scaling = scale(5, 5, 5)
+    const translation = translate(10, 5, 7)
+
+    // Apply transforms in sequence
+    const p2 = multiply(rotation, p)
+    expect(p2).toBeDeepCloseTo(new Point(1, -1, 0))
+
+    const p3 = multiply(scaling, p2)
+    expect(p3).toBeDeepCloseTo(new Point(5, -5, 0))
+
+    const p4 = multiply(translation, p3)
+    expect(p4).toBeDeepCloseTo(new Point(15, 0, 7))
+
+    // Apply transforms with chain
+    const chainedTransform = chain(rotation, scaling, translation)
+    expect(multiply(chainedTransform, p)).toBeDeepCloseTo(new Point(15, 0, 7))
+  })
+})
 
 describe('.rotateX()', () => {
 

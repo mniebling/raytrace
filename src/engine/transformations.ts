@@ -1,5 +1,21 @@
+import { multiply } from './math-general'
 import { Matrix } from './matrix'
 
+
+/**
+ * Returns a matrix representing a combination of multiple transforms.
+ *
+ * Note that transforms will be applied from first to last.
+ */
+export function chain (...transforms: Matrix[]): Matrix {
+
+  const identity = new Matrix()
+
+  return transforms.reduceRight(
+    (accum: Matrix, current: Matrix) => multiply(accum, current),
+    identity
+  )
+}
 
 /**
  * Returns a transform matrix representing rotation around the x-axis.
