@@ -1,0 +1,24 @@
+<div class="demo-02">
+  <h1>
+    <span>Demo 2:</span>
+    <span>Transform Clock</span>
+  </h1>
+
+  <canvas id="canvasElement" width="400" height="400"></canvas>
+
+  <p>The current time is: <strong id="now"></strong></p>
+
+  <p>In this demo, points are rotated around the z-axis using the engine's
+    transform functions.</p>
+
+  <p>The hour, minute, and second indicators are positioned by converting the
+    parts of the current time to radians and using those values to calculate a
+    rotation on each tick.</p>
+
+  <p>The hour and minute hands are heavily quantized — this is because they are
+    calculated by dividing hours by 12 and minutes by 60 before converting to
+    rotation. We could fix this by converting them to seconds and dividing by
+    (12×60) and (60×60) instead.</p>
+
+  <router-link to="/">Home</router-link>
+</div>

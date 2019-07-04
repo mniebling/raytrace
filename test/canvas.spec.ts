@@ -22,7 +22,32 @@ describe('new Canvas()', () => {
   })
 })
 
-describe('getImageData()', () => {
+describe('.clear()', () => {
+
+  it('should clear the canvas to black by default', () => {
+
+    const canvas = new Canvas(2, 2)
+    const black = new Color(0, 0, 0)
+    const white = new Color(1, 1, 1)
+
+    canvas.setPixel(1, 1, white)
+    canvas.clear()
+
+    canvas.pixelData.forEach(pixel => expect(pixel).toEqual(black))
+  })
+
+  it('should clear the canvas to other colors if specified', () => {
+
+    const canvas = new Canvas(2, 2)
+    const white = new Color(1, 1, 1)
+
+    canvas.clear(white)
+
+    canvas.pixelData.forEach(pixel => expect(pixel).toEqual(white))
+  })
+})
+
+describe('.getImageData()', () => {
 
   it('should return an ImageData object', () => {
 
@@ -50,7 +75,7 @@ describe('getImageData()', () => {
   })
 })
 
-describe('getPixel()', () => {
+describe('.getPixel()', () => {
 
   it('should get the color at the given pixel', () => {
 
@@ -69,7 +94,7 @@ describe('getPixel()', () => {
   })
 })
 
-describe('setPixel()', () => {
+describe('.setPixel()', () => {
 
   it('should set the given pixel to the given color', () => {
 

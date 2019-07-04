@@ -19,6 +19,14 @@ export class Canvas {
   }
 
   /**
+   * Sets all pixels to the specified color (black, by default).
+   */
+  clear (color: Color = new Color(0, 0, 0)) {
+
+    this.pixelData = new Array(this.width * this.height).fill(color)
+  }
+
+  /**
    * Gets the color of the pixel at the given (x, y) coordinates.
    */
   getPixel (x: number, y: number): Color {
