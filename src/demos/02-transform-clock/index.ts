@@ -1,8 +1,14 @@
 import Vue from 'vue'
-import { Canvas } from '@/engine/canvas'
-import { Point, Color } from '@/engine/tuples'
-import { chain, translate, rotateZ } from '@/engine/transformations'
-import { multiply, π } from '@/engine/math-general'
+import {
+  Canvas,
+  chain,
+  Color,
+  multiply,
+  Point,
+  rotateZ,
+  translate,
+  π
+} from '@/engine'
 
 
 export default Vue.extend({
