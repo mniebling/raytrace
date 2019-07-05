@@ -1,5 +1,5 @@
-import { Point, Vector } from '@/engine/tuples'
-import { multiply, add } from './math-general';
+import { add, multiply } from './math-general'
+import { Vector, Point } from './tuples'
 
 
 export class Ray {

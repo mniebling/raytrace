@@ -1,5 +1,5 @@
-import { clamp } from '@/engine/math-general'
-import { Color } from '@/engine/tuples'
+import { clamp } from './math-general'
+import { Color } from './tuples'
 
 
 export class Canvas {

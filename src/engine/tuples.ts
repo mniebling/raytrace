@@ -1,4 +1,4 @@
-import { equal } from '@/engine/math-general'
+import { equal } from './math-general'
 
 
 /**

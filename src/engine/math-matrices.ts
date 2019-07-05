@@ -1,5 +1,5 @@
-import { isOdd } from '@/engine/math-general'
-import { Matrix } from '@/engine/matrix'
+import { isOdd } from './math-general'
+import { Matrix } from './matrix'
 
 
 /**

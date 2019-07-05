@@ -1,4 +1,4 @@
-import { Vector } from '@/engine/tuples'
+import { Vector } from './tuples'
 
 
 /**

@@ -1,5 +1,5 @@
-import { Matrix } from '@/engine/matrix'
-import { Tuple, Point, Vector, Color } from '@/engine/tuples'
+import { Matrix } from './matrix'
+import { Tuple, Point, Vector, Color } from './tuples'
 
 
 /**
