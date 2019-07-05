@@ -191,7 +191,29 @@ export function multiply (a: Tuple | Matrix, b: number | Tuple | Matrix): Tuple 
  * - When subtracting two vectors, the result is the change in direction
  *   between the two.
  */
+export function subtract (p: Point, v: Vector): Point
+export function subtract (p1: Point, p2: Point): Vector
+export function subtract (v1: Vector, v2: Vector): Vector
 export function subtract (a: Tuple, b: Tuple): Tuple {
+
+  if (a instanceof Point && b instanceof Vector) {
+    return new Point(
+      a._tuple[0] - b._tuple[0],
+      a._tuple[1] - b._tuple[1],
+      a._tuple[2] - b._tuple[2]
+    )
+  }
+
+  if (
+    a instanceof Vector && b instanceof Vector ||
+    a instanceof Point && b instanceof Point
+  ) {
+    return new Vector(
+      a._tuple[0] - b._tuple[0],
+      a._tuple[1] - b._tuple[1],
+      a._tuple[2] - b._tuple[2]
+    )
+  }
 
   return new Tuple(
     a._tuple[0] - b._tuple[0],
