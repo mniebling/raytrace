@@ -1,5 +1,17 @@
-import { Point, Vector, Ray, position, Sphere, intersect } from '@/engine'
+import { Point, Vector, Ray, position, Sphere, intersect, Intersection, hit } from '@/engine'
 
+
+describe('new Intersection()', () => {
+
+  it('should create an intersection', () => {
+
+    const sphere = new Sphere()
+    const intersection = new Intersection(3.5, sphere)
+
+    expect(intersection.t).toEqual(3.5)
+    expect(intersection.object).toBeDeepCloseTo(sphere)
+  })
+})
 
 describe('new Ray()', () => {
 
@@ -15,6 +27,54 @@ describe('new Ray()', () => {
   })
 })
 
+describe('.hit()', () => {
+
+  it('should find a hit when all intersections have positive t', () => {
+
+    const s = new Sphere()
+    const int1 = new Intersection(1, s)
+    const int2 = new Intersection(2, s)
+
+    expect(hit([int1, int2])).toBeDeepCloseTo(int1)
+  })
+
+  it('should find a hit when some intersections have negative t', () => {
+
+    const s = new Sphere()
+    const int1 = new Intersection(-1, s)
+    const int2 = new Intersection(2, s)
+
+    expect(hit([int1, int2])).toBeDeepCloseTo(int2)
+  })
+
+  it('should find a hit when all intersections have negative t', () => {
+
+    const s = new Sphere()
+    const int1 = new Intersection(-1, s)
+    const int2 = new Intersection(-2, s)
+
+    expect(hit([int1, int2])).toBeNull()
+  })
+
+  it('should return null if intersections is empty', () => {
+
+    expect(hit([])).toBeNull()
+  })
+
+  test('the hit is always the lowest non-negative intersection', () => {
+
+    const s = new Sphere()
+    const int1 = new Intersection(5, s)
+    const int2 = new Intersection(7, s)
+    const int3 = new Intersection(-3, s)
+    const int4 = new Intersection(2, s)
+
+    const intersections = [int1, int2, int3, int4]
+
+    expect(hit(intersections)).toBeDeepCloseTo(int4)
+  })
+})
+
 describe('.intersect()', () => {
 
   test('a ray intersects a sphere at 2 points', () => {
@@ -25,8 +85,8 @@ describe('.intersect()', () => {
     const intersections = intersect(ray, sphere)
 
     expect(intersections).toHaveLength(2)
-    expect(intersections[0]).toEqual(4)
-    expect(intersections[1]).toEqual(6)
+    expect(intersections[0]).toBeDeepCloseTo({ t: 4, object: sphere })
+    expect(intersections[1]).toBeDeepCloseTo({ t: 6, object: sphere })
   })
 
   test('a ray intersects a sphere at a tangent', () => {
@@ -37,8 +97,8 @@ describe('.intersect()', () => {
     const intersections = intersect(ray, sphere)
 
     expect(intersections).toHaveLength(2) // returns 2 intersections at the same point, this is useful "for later"
-    expect(intersections[0]).toEqual(5)
-    expect(intersections[1]).toEqual(5)
+    expect(intersections[0]).toBeDeepCloseTo({ t: 5, object: sphere })
+    expect(intersections[1]).toBeDeepCloseTo({ t: 5, object: sphere })
   })
 
   test('a ray misses a sphere', () => {
@@ -59,8 +119,8 @@ describe('.intersect()', () => {
     const intersections = intersect(ray, sphere)
 
     expect(intersections).toHaveLength(2)
-    expect(intersections[0]).toEqual(-1) // an intersection happens behind the ray's origin, in negative time O_o
-    expect(intersections[1]).toEqual(1)
+    expect(intersections[0]).toBeDeepCloseTo({ t: -1, object: sphere }) // an intersection happens behind the ray's origin, in negative time O_o
+    expect(intersections[1]).toBeDeepCloseTo({ t: 1, object: sphere })
   })
 
   test('a sphere is behind a ray', () => {
@@ -71,8 +131,8 @@ describe('.intersect()', () => {
     const intersections = intersect(ray, sphere)
 
     expect(intersections).toHaveLength(2) // one negative intersection for each surface behind the ray
-    expect(intersections[0]).toEqual(-6)
-    expect(intersections[1]).toEqual(-4)
+    expect(intersections[0]).toBeDeepCloseTo({ t: -6, object: sphere })
+    expect(intersections[1]).toBeDeepCloseTo({ t: -4, object: sphere })
   })
 })
 
