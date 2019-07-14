@@ -194,6 +194,7 @@ export function multiply (a: Tuple | Matrix, b: number | Tuple | Matrix): Tuple 
 export function subtract (p: Point, v: Vector): Point
 export function subtract (p1: Point, p2: Point): Vector
 export function subtract (v1: Vector, v2: Vector): Vector
+export function subtract (c1: Color, c2: Color): Color
 export function subtract (a: Tuple, b: Tuple): Tuple {
 
   if (a instanceof Point && b instanceof Vector) {
