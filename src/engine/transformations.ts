@@ -1,5 +1,7 @@
 import { multiply } from './math-general'
 import { Matrix } from './matrix'
+import { Ray } from './ray'
+import { Sphere } from './objects'
 
 
 /**
@@ -122,6 +124,17 @@ export function skew (
   transform.setValueAt(2, 1, z_y)
 
   return transform
+}
+
+/**
+ * Applies a transform matrix to the given ray and returns the transformed ray.
+ */
+export function transform (r: Ray, m: Matrix): Ray {
+
+  return new Ray(
+    multiply(m, r.origin),
+    multiply(m, r.direction)
+  )
 }
 
 export function translate (x: number, y: number, z: number): Matrix {

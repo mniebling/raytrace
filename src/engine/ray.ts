@@ -2,6 +2,8 @@ import { add, multiply, subtract } from './math-general'
 import { Vector, Point } from './tuples'
 import { Sphere } from './objects'
 import { dot } from './math-vectors'
+import { transform } from './transformations'
+import { inverse } from './math-matrices';
 
 
 export class Intersection {
@@ -62,10 +64,13 @@ export function hit (intersections: Intersection[]): Intersection | null {
  */
 export function intersect (ray: Ray, sphere: Sphere): Intersection[] {
 
-  const sphereCenterToRayOrigin = subtract(ray.origin, new Point(0, 0, 0))
+  // Adjust the ray for the object's transforms
+  const ray2 = transform(ray, inverse(sphere.transform))
 
-  const a = dot(ray.direction, ray.direction)
-  const b = 2 * dot(ray.direction, sphereCenterToRayOrigin)
+  const sphereCenterToRayOrigin = subtract(ray2.origin, new Point(0, 0, 0))
+
+  const a = dot(ray2.direction, ray2.direction)
+  const b = 2 * dot(ray2.direction, sphereCenterToRayOrigin)
   const c = dot(sphereCenterToRayOrigin, sphereCenterToRayOrigin) - 1
 
   const discriminant = (b ** 2) - (4 * a * c)

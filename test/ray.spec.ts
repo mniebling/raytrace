@@ -1,4 +1,15 @@
-import { Point, Vector, Ray, position, Sphere, intersect, Intersection, hit } from '@/engine'
+import {
+  hit,
+  intersect,
+  Intersection,
+  Point,
+  position,
+  Ray,
+  scale,
+  Sphere,
+  translate,
+  Vector
+} from '@/engine'
 
 
 describe('new Intersection()', () => {
@@ -133,6 +144,32 @@ describe('.intersect()', () => {
     expect(intersections).toHaveLength(2) // one negative intersection for each surface behind the ray
     expect(intersections[0]).toBeDeepCloseTo({ t: -6, object: sphere })
     expect(intersections[1]).toBeDeepCloseTo({ t: -4, object: sphere })
+  })
+
+  test('a ray intersects a scaled sphere', () => {
+
+    const ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1))
+    const sphere = new Sphere()
+
+    sphere.transform = scale(2, 2, 2)
+
+    const intersections = intersect(ray, sphere)
+
+    expect(intersections).toHaveLength(2)
+    expect(intersections[0].t).toBeCloseTo(3)
+    expect(intersections[1].t).toBeCloseTo(7)
+  })
+
+  test('a ray intersects a translated sphere', () => {
+
+    const ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1))
+    const sphere = new Sphere()
+
+    sphere.transform = translate(5, 0, 0)
+
+    const intersections = intersect(ray, sphere)
+
+    expect(intersections).toHaveLength(0)
   })
 })
 

@@ -1,7 +1,19 @@
-import { π, multiply } from '@/engine/math-general'
-import { inverse } from '@/engine/math-matrices'
-import { chain, rotateX, rotateY, rotateZ, scale, skew, translate } from '@/engine/transformations'
-import { Point, Vector } from '@/engine/tuples'
+import {
+  chain,
+  inverse,
+  multiply,
+  Point,
+  Ray,
+  rotateX,
+  rotateY,
+  rotateZ,
+  scale,
+  skew,
+  transform,
+  translate,
+  Vector,
+  π
+} from '@/engine'
 
 
 describe('.chain()', () => {
@@ -177,6 +189,31 @@ describe('.skew()', () => {
     const transform = skew(0, 0, 0, 0, 0, 1)
 
     expect(multiply(transform, p)).toBeDeepCloseTo(new Point(2, 3, 7))
+  })
+})
+
+describe('.transform()', () => {
+
+  it('should translate a ray', () => {
+
+    const r = new Ray(new Point(1, 2, 3), new Vector(0, 1, 0))
+    const translation = translate(3, 4, 5)
+
+    const r2 = transform(r, translation)
+
+    expect(r2.origin).toBeDeepCloseTo(new Point(4, 6, 8))
+    expect(r2.direction).toBeDeepCloseTo(new Vector(0, 1, 0))
+  })
+
+  it('should scale a ray', () => {
+
+    const r = new Ray(new Point(1, 2, 3), new Vector(0, 1, 0))
+    const scaling = scale(2, 3, 4)
+
+    const r2 = transform(r, scaling)
+
+    expect(r2.origin).toBeDeepCloseTo(new Point(2, 6, 12))
+    expect(r2.direction).toBeDeepCloseTo(new Vector(0, 3, 0))
   })
 })
 
