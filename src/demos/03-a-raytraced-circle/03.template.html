@@ -12,5 +12,11 @@
   <p>There isn't any notion of lighting yet, so even though we're technically
     intersecting with a sphere it will be indistinguishable from a circle.</p>
 
+  <p>You can also redraw the sphere with some transforms:
+    <button v-on:click="scale()">Scale (X)</button>
+    <button v-on:click="skew()">Skew</button>
+    <button v-on:click="none()">None</button>
+  </p>
+
   <router-link to="/">Home</router-link>
 </div>

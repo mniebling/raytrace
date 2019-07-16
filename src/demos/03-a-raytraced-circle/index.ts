@@ -1,23 +1,38 @@
 import Vue from 'vue'
-import { Canvas, Sphere, Point, Ray, Vector, Color, normalize, subtract, intersect, hit } from '@/engine'
+import {
+  Canvas,
+  chain,
+  Color,
+  hit,
+  intersect,
+  normalize,
+  Point,
+  Ray,
+  scale,
+  skew,
+  Sphere,
+  subtract
+} from '@/engine'
 
 
 export default Vue.extend({
+  methods: {
+    none: () => runDemo('none'),
+    scale: () => runDemo('scale'),
+    skew: () => runDemo('skew')
+  },
   mounted: () => setTimeout(runDemo),
   template: require('./03.template.html')
 })
 
 
-function runDemo () {
+function runDemo (mode?: string) {
 
-  // Set up the HTML canvas
   const canvasDimension = 200
   const canvas = new Canvas(canvasDimension, canvasDimension)
 
   const el = document.getElementById('canvasElement') as HTMLCanvasElement
-  const ctx = el.getContext('2d')
-
-  if (!ctx) throw new Error(`Error getting context from canvas.`)
+  const ctx = el.getContext('2d') as CanvasRenderingContext2D
 
   ctx.putImageData(canvas.getImageData(), 0, 0)
 
@@ -27,6 +42,15 @@ function runDemo () {
   const surfaceZ = 10
   const surfaceSize = 8
   const pixelSize = surfaceSize / canvasDimension
+
+  switch (mode) {
+    case 'scale':
+      sphere.transform = scale(0.5, 1, 1)
+      break
+    case 'skew':
+      sphere.transform = chain(skew(1, 0, 0, 0, 0, 0), scale(0.5, 1, 1))
+      break
+  }
 
   for (let row = 0; row < canvas.height; row++) {
     const worldY = (surfaceSize / 2) - (pixelSize * row)
